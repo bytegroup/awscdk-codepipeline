@@ -1,4 +1,4 @@
-import { Stack, StackProps } from 'aws-cdk-lib';
+import {SecretValue, Stack, StackProps} from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import {CodePipeline, CodePipelineSource, ShellStep} from "aws-cdk-lib/pipelines";
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
@@ -17,7 +17,13 @@ export class AwscdkCodepipelineStack extends Stack {
     new CodePipeline(this, 'Pipeline', {
       pipelineName: 'CDKTestPipeline',       // Creating a new code pipeline which is a construct
       synth: new ShellStep('Synth', {        // Add a new synthesis 'shellstep' which will be pointed at our gihub repository
-        input: CodePipelineSource.gitHub('bytegroup/awscdk-codepipeline', 'main'), // replace the GitHub repository name with 'user-name/repository-name'
+        input: CodePipelineSource.gitHub(
+            'bytegroup/awscdk-codepipeline',
+            'main',
+            {
+              authentication: SecretValue.unsafePlainText("github-token-pvt")
+            }
+        ), // replace the GitHub repository name with 'user-name/repository-name'
 
         // The build steps for the pipeline are defined by these commands
 
