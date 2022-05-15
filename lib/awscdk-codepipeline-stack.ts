@@ -21,7 +21,7 @@ export class AwscdkCodepipelineStack extends Stack {
             'bytegroup/awscdk-codepipeline',
             'main',
             {
-              authentication: SecretValue.unsafePlainText("github-token-pvt")
+              authentication: SecretValue.secretsManager("github-token-pvt"),
             }
         ), // replace the GitHub repository name with 'user-name/repository-name'
 
