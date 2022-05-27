@@ -16,11 +16,12 @@ const ecr = new EcrStack(app, APP+"-ecr-stack", {
 const vpc= Vpc.fromLookup(app, VPC_NAME, {
     vpcId: 'vpc-00f205a96f9862cb2',
     vpcName: VPC_NAME,
-    isDefault: false
+    isDefault: false,
 });
 new ElasticContainerStack(app, ElasticContainerStack.name, {
     vpc: vpc,
     repository: ecr.repository,
+    tags: TAGS,
 })
 
 /*
