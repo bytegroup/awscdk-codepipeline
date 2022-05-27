@@ -10,4 +10,5 @@ export const TAGS = {
 }
 
 export const CONTAINER_PORT = 8081;
-export const VPC_NAME = "toggle-staging-vpc"
+export const VPC_NAME = "toggle-staging-vpc";
+export const VPC_ID = "vpc-00f205a96f9862cb2";/*toggle-staging-vpc*/

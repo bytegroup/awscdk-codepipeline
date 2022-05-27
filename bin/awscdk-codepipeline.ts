@@ -6,6 +6,7 @@ import {EcrStack} from "../lib/ecr.stack";
 import {APP, AWS_ENV, CONTAINER_PORT, TAGS, VPC_NAME} from "../lib/Constants";
 import {ElasticContainerStack} from "../lib/ecs.stack";
 import {Vpc} from "aws-cdk-lib/aws-ec2";
+import {VpcStack} from "../lib/vpc.stack";
 
 const app = new cdk.App();
 const ecr = new EcrStack(app, APP+"-ecr-stack", {
@@ -13,13 +14,10 @@ const ecr = new EcrStack(app, APP+"-ecr-stack", {
     stackName: APP+"-ecr-stack",
     tags: TAGS,
 });
-const vpc= Vpc.fromLookup(app, VPC_NAME, {
-    vpcId: 'vpc-00f205a96f9862cb2',
-    vpcName: VPC_NAME,
-    isDefault: false,
-});
+const vpc = new VpcStack(app, APP+'-vpc-stack', {})
+
 new ElasticContainerStack(app, ElasticContainerStack.name, {
-    vpc: vpc,
+    vpc: vpc.vpc,
     repository: ecr.repository,
     tags: TAGS,
 })
