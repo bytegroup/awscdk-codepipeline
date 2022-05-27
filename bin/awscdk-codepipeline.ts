@@ -21,6 +21,7 @@ const vpc = new VpcStack(app, APP+'-vpc-stack', {
 })
 
 new ElasticContainerStack(app, ElasticContainerStack.name, {
+    env: AWS_ENV,
     vpc: vpc.vpc,
     repository: ecr.repository,
     tags: TAGS,
