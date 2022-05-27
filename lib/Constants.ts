@@ -9,6 +9,6 @@ export const TAGS = {
     'Author': "Mizanur",
 }
 
-export const CONTAINER_PORT = 8081;
+export const CONTAINER_PORT = 3000;
 export const VPC_NAME = "toggle-staging-vpc";
 export const VPC_ID = "vpc-00f205a96f9862cb2";/*toggle-staging-vpc*/
