@@ -14,7 +14,11 @@ const ecr = new EcrStack(app, APP+"-ecr-stack", {
     stackName: APP+"-ecr-stack",
     tags: TAGS,
 });
-const vpc = new VpcStack(app, APP+'-vpc-stack', {})
+const vpc = new VpcStack(app, APP+'-vpc-stack', {
+    env: AWS_ENV,
+    stackName: APP+'-vpc-stack',
+    tags: TAGS,
+})
 
 new ElasticContainerStack(app, ElasticContainerStack.name, {
     vpc: vpc.vpc,
