@@ -7,7 +7,7 @@ import {
     CpuArchitecture,
     EcrImage,
     FargateService,
-    FargateTaskDefinition,
+    FargateTaskDefinition, LogDrivers,
     OperatingSystemFamily
 } from "aws-cdk-lib/aws-ecs";
 import {APP, CONTAINER_PORT, VPC_NAME} from "./Constants";
@@ -73,7 +73,10 @@ export class ElasticContainerStack extends Stack {
 
         const container = taskDefinition.addContainer(APP+'-container', {
             image: EcrImage.fromEcrRepository(props.repository),
-            containerName: APP+'-container'
+            containerName: APP+'-container',
+            logging: LogDrivers.awsLogs({
+                streamPrefix: 'ECS/minemapapp-stg-server',
+            }),
         });
 
         container.addPortMappings({
