@@ -65,10 +65,13 @@ export class ElasticContainerStack extends Stack {
         });
 
         const taskDefinition = new FargateTaskDefinition(this, APP+'fargate-td', {
-            runtimePlatform: {
+            /*runtimePlatform: {
                 cpuArchitecture: CpuArchitecture.ARM64,
                 operatingSystemFamily: OperatingSystemFamily.LINUX,
-            },
+            },*/
+
+            memoryLimitMiB: 2048,
+            cpu: 1024,
         });
 
         const container = taskDefinition.addContainer(APP+'-container', {
