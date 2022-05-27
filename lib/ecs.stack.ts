@@ -59,7 +59,7 @@ export class ElasticContainerStack extends Stack {
         });
 
         const targetGroup = httpListener.addTargets(APP+'-alb-target', {
-            targetGroupName: APP+'-alb-tcp-target',
+            targetGroupName: APP+'-alb-target',
             protocol: ApplicationProtocol.HTTP,
             protocolVersion: ApplicationProtocolVersion.HTTP1,
         });
