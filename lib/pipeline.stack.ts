@@ -43,9 +43,9 @@ export class PipelineStack extends Stack{
             throw new Error('props required');
         }
 
-        new GitHubSourceCredentials(this, APP+"-github-creds", {
+        /*new GitHubSourceCredentials(this, APP+"-github-creds", {
             accessToken: SecretValue.secretsManager(githubConfig.secreteManagerTokenName),
-        });
+        });*/
 
         const source = Source.gitHub({
             owner: githubConfig.owner,
