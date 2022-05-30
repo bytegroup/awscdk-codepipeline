@@ -6,17 +6,18 @@ import { aws_iam as iam } from 'aws-cdk-lib';
 import {
     Cluster, ContainerDefinition,
     CpuArchitecture,
-    EcrImage,
+    EcrImage, EnvironmentFile,
     FargateService,
     FargateTaskDefinition, LogDrivers,
     OperatingSystemFamily
 } from "aws-cdk-lib/aws-ecs";
-import {APP, CONTAINER_PORT, VPC_NAME} from "../constants/Constants";
+import {APP, CONTAINER_PORT, RESOURCE_BUCKET, VPC_NAME} from "../constants/Constants";
 import {
     ApplicationLoadBalancer,
     ApplicationProtocol,
     ApplicationProtocolVersion, ListenerAction, SslPolicy
 } from "aws-cdk-lib/aws-elasticloadbalancingv2";
+import {Bucket} from "aws-cdk-lib/aws-s3";
 
 interface Props extends StackProps {
   vpc: IVpc;
@@ -99,8 +100,10 @@ export class ElasticContainerStack extends Stack {
             logging: LogDrivers.awsLogs({
                 streamPrefix: 'ECS/minemapapp-stg-server',
             }),
+            environmentFiles:[
+                EnvironmentFile.fromBucket(Bucket.fromBucketName(this, APP+'-bucket', RESOURCE_BUCKET),'commonEnv.env'),
+            ],
         });
-
         this.container.addPortMappings({
             containerPort: CONTAINER_PORT,
         });
