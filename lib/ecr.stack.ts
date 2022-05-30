@@ -1,7 +1,7 @@
 import {RemovalPolicy, Stack, StackProps} from "aws-cdk-lib";
 import {IRepository, Repository} from "aws-cdk-lib/aws-ecr";
 import {Construct} from "constructs";
-import {APP} from "./Constants";
+import {APP} from "../constants/Constants";
 
 export class EcrStack extends Stack {
     public readonly repository: IRepository;

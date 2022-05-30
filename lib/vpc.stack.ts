@@ -1,7 +1,7 @@
 import {Stack, StackProps} from "aws-cdk-lib";
 import {IVpc, Vpc} from "aws-cdk-lib/aws-ec2";
 import {Construct} from "constructs";
-import {VPC_NAME} from "./Constants";
+import {VPC_NAME} from "../constants/Constants";
 
 export class VpcStack extends Stack {
     public readonly vpc: IVpc;
