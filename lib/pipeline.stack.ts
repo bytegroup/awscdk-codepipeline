@@ -50,10 +50,10 @@ export class PipelineStack extends Stack{
         const source = Source.gitHub({
             owner: githubConfig.owner,
             repo: githubConfig.repo,
-            webhook: true,
-            webhookFilters: [
+            webhook: false,
+            /*webhookFilters: [
                 FilterGroup.inEventOf(EventAction.PUSH).andBranchIs(githubConfig.branch),
-            ],
+            ],*/
         })
 
         const stack = Stack.of(this);

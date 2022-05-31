@@ -6,11 +6,12 @@ export const AWS_ENV: Environment = {
 }
 
 export const githubConfig = {
-    owner: 'bytegroup',
-    repo: 'ecs-nestjs-demo',
-    branch: 'master',
-    secreteManagerTokenName:'github-token-cicd-pipeline-demo',
-    secreteManagerTokenArn:'arn:aws:secretsmanager:ap-northeast-1:361854753178:secret:github-token-cicd-pipeline-demo-JFTHB7',
+    owner: 'toggle-inc',
+    repo: 'mine_map_app_server',
+    branch: 'cicd',
+    //secreteManagerTokenName:'github-token-cicd-npipeline-demo',
+    secreteManagerTokenName:'github-secret-token',
+    secreteManagerTokenArn:'arn:aws:secretsmanager:ap-northeast-1:361854753178:secret:github-secret-token-ABvX7J',
 }
 
 export const APP = 'mine-map-app-server';

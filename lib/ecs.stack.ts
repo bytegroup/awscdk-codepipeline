@@ -1,9 +1,10 @@
-import {Duration, Stack, StackProps} from "aws-cdk-lib";
+import {Aspects, Duration, IAspect, Stack, StackProps} from "aws-cdk-lib";
 import {IVpc, Peer, Port, SecurityGroup, Vpc} from "aws-cdk-lib/aws-ec2";
 import {IRepository} from "aws-cdk-lib/aws-ecr";
-import {Construct} from "constructs";
+import {Construct, IConstruct} from "constructs";
 import { aws_iam as iam } from 'aws-cdk-lib';
 import {
+    CfnService,
     Cluster, ContainerDefinition,
     CpuArchitecture,
     EcrImage, EnvironmentFile,
@@ -18,6 +19,7 @@ import {
     ApplicationProtocolVersion, ListenerAction, SslPolicy
 } from "aws-cdk-lib/aws-elasticloadbalancingv2";
 import {Bucket} from "aws-cdk-lib/aws-s3";
+import {ManagedPolicy, Policy, PolicyStatement, Role} from "aws-cdk-lib/aws-iam";
 
 interface Props extends StackProps {
   vpc: IVpc;
@@ -55,7 +57,7 @@ export class ElasticContainerStack extends Stack {
         this.loadBalancer = new ApplicationLoadBalancer(this, APP+'-alb', {
             vpc: props.vpc,
             loadBalancerName: APP+'-alb',
-            internetFacing: true,
+            internetFacing: false,
             idleTimeout: Duration.minutes(10),
             securityGroup: albSg,
             http2Enabled: false,
@@ -102,6 +104,7 @@ export class ElasticContainerStack extends Stack {
             }),
             environmentFiles:[
                 EnvironmentFile.fromBucket(Bucket.fromBucketName(this, APP+'-bucket', RESOURCE_BUCKET),'commonEnv.env'),
+                //EnvironmentFile.fromBucket(Bucket.fromBucketArn(this, 'test', 'arn:aws:s3:::codepipeline-resources-cdk/commonEnv.env'),'commonEnv.env'),
             ],
         });
         this.container.addPortMappings({
@@ -123,10 +126,22 @@ export class ElasticContainerStack extends Stack {
             taskDefinition,
             securityGroups: [securityGroup],
             desiredCount: 1,
+            enableExecuteCommand: true,
         });
-        /*this.service.taskDefinition.taskRole.addToPrincipalPolicy(
-            new iam.PolicyStatement({
+
+
+        this.service.taskDefinition.executionRole?.addManagedPolicy(
+            ManagedPolicy.fromAwsManagedPolicyName("AmazonS3ReadOnlyAccess")
+        );
+
+        //ManagedPolicy.fromAwsManagedPolicyName("AmazonS3ReadOnlyAccess");
+        //this.service.taskDefinition.addToTaskRolePolicy(PolicyStatement.fromJson({}));
+        this.service.taskDefinition.taskRole.addToPrincipalPolicy(
+            new PolicyStatement({
                 actions: [
+                    /*'s3:GetObject',
+                    's3:GetBucketLocation',*/
+                    's3:*',
                     'ssmmessages:CreateControlChannel',
                     'ssmmessages:CreateDataChannel',
                     'ssmmessages:OpenControlChannel',
@@ -134,8 +149,14 @@ export class ElasticContainerStack extends Stack {
                 ],
                 resources: ['*'],
             }),
-        );*/
-        //cdk.Aspects.of(this.service).add(new EnableExecuteCommand());
+        );
+        /*Aspects.of(this.service).add(new class implements IAspect {
+            public visit(node: IConstruct) {
+                if (node instanceof CfnService){
+                    node.addOverride('Properties.EnableExecuteCommand', true);
+                }
+            }
+        });*/
         targetGroup.addTarget(this.service);
     }
 }
