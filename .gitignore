@@ -10,3 +10,4 @@ cdk.out
 #ignore IDE
 .idea
 .vscode
+commonEnv.env
