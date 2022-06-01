@@ -12,10 +12,6 @@ import {
 } from "aws-cdk-lib/aws-codepipeline-actions";
 import {
     BuildEnvironmentVariableType,
-    BuildSpec,
-    EventAction,
-    FilterGroup,
-    GitHubSourceCredentials,
     LinuxBuildImage,
     Project,
     Source
