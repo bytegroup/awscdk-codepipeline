@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6982d1c4-224f-4237-bb47-1ec43578d87b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/infra/bin/awscdk-codepipeline.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/lib/awscdk-codepipeline-stack.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/lib/pipeline.stack.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/infra/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.npmignore" beforeDir="false" afterPath="$PROJECT_DIR$/infra/.npmignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/infra/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/awscdk-codepipeline.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cdk.context.json" beforeDir="false" afterPath="$PROJECT_DIR$/infra/cdk.context.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cdk.json" beforeDir="false" afterPath="$PROJECT_DIR$/infra/cdk.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commonEnvProd.env" beforeDir="false" afterPath="$PROJECT_DIR$/infra/commonEnvProd.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/Constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/infra/constants/Constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/build.commands.ts" beforeDir="false" afterPath="$PROJECT_DIR$/infra/constants/build.commands.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/infra/jest.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/awscdk-codepipeline-stack.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ecr.stack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/infra/lib/ecr.stack.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ecs.stack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/infra/lib/ecs.stack.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pipeline.stack.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/vpc.stack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/infra/lib/vpc.stack.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/infra/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/infra/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/awscdk-codepipeline.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/infra/test/awscdk-codepipeline.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/infra/tsconfig.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="29C4YZlww4RT0ydsf7M6HgauJIc" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/lib" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/infra" />
+      <recent name="$PROJECT_DIR$/node_modules" />
+      <recent name="$PROJECT_DIR$/constants" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6982d1c4-224f-4237-bb47-1ec43578d87b" name="Default Changelist" comment="" />
+      <created>1652603781319</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1652603781319</updated>
+      <workItem from="1652603785974" duration="6163000" />
+      <workItem from="1652939561738" duration="599000" />
+      <workItem from="1653288363955" duration="14000" />
+      <workItem from="1653562275040" duration="2197000" />
+      <workItem from="1653565660288" duration="114533000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/bin/awscdk-codepipeline.d.ts" />
+        <option value="$PROJECT_DIR$/bin/awscdk-codepipeline.js" />
+        <option value="$PROJECT_DIR$/lib/pipeline.stack.d.ts" />
+        <option value="$PROJECT_DIR$/lib/ecs.stack.js" />
+        <option value="$PROJECT_DIR$/lib/vpc.stack.d.ts" />
+        <option value="$PROJECT_DIR$/lib/ecr.stack.d.ts" />
+        <option value="$PROJECT_DIR$/lib/pipeline.stack.js" />
+        <option value="$PROJECT_DIR$/lib/awscdk-codepipeline-stack.d.ts" />
+        <option value="$PROJECT_DIR$/lib/ecs.stack.d.ts" />
+        <option value="$PROJECT_DIR$/lib/ecr.stack.js" />
+        <option value="$PROJECT_DIR$/lib/vpc.stack.js" />
+        <option value="$PROJECT_DIR$/lib/awscdk-codepipeline-stack.js" />
+        <option value="$PROJECT_DIR$/test/awscdk-codepipeline.test.js" />
+        <option value="$PROJECT_DIR$/test/awscdk-codepipeline.test.d.ts" />
+        <option value="$PROJECT_DIR$/constants/build.commands.d.ts" />
+        <option value="$PROJECT_DIR$/constants/build.commands.js" />
+        <option value="$PROJECT_DIR$/constants/Constants.js" />
+        <option value="$PROJECT_DIR$/constants/Constants.d.ts" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="655" y="342" width="600" height="403" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1653672305256">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state x="655" y="342" width="600" height="403" key="#com.intellij.fileTypes.FileTypeChooser/0.27.3840.1053@0.27.3840.1053" timestamp="1653672305256" />
+    <state x="743" y="298" width="424" height="491" key="FileChooserDialogImpl" timestamp="1653680703051">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state x="743" y="298" width="424" height="491" key="FileChooserDialogImpl/0.27.3840.1053@0.27.3840.1053" timestamp="1653680703051" />
+    <state width="1874" height="284" key="GridCell.Tab.0.bottom" timestamp="1653565865690">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state width="1874" height="284" key="GridCell.Tab.0.bottom/0.27.3840.1053@0.27.3840.1053" timestamp="1653565865690" />
+    <state width="1874" height="284" key="GridCell.Tab.0.center" timestamp="1653565865689">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state width="1874" height="284" key="GridCell.Tab.0.center/0.27.3840.1053@0.27.3840.1053" timestamp="1653565865689" />
+    <state width="1874" height="284" key="GridCell.Tab.0.left" timestamp="1653565865689">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state width="1874" height="284" key="GridCell.Tab.0.left/0.27.3840.1053@0.27.3840.1053" timestamp="1653565865689" />
+    <state width="1874" height="284" key="GridCell.Tab.0.right" timestamp="1653565865690">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state width="1874" height="284" key="GridCell.Tab.0.right/0.27.3840.1053@0.27.3840.1053" timestamp="1653565865690" />
+    <state x="570" y="153" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1653847533934">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state x="570" y="153" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.3840.1053@0.27.3840.1053" timestamp="1653847533934" />
+    <state x="651" y="279" width="618" height="522" key="find.popup" timestamp="1654083009206">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state x="651" y="279" width="618" height="522" key="find.popup/0.27.3840.1053@0.27.3840.1053" timestamp="1654083009206" />
+  </component>
+</project>

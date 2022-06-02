@@ -1,0 +1,612 @@
+{
+ "Resources": {
+  "minemapappserverclusterA303E766": {
+   "Type": "AWS::ECS::Cluster",
+   "Properties": {
+    "ClusterName": "mine-map-app-server-cluster",
+    "ClusterSettings": [
+     {
+      "Name": "containerInsights",
+      "Value": "enabled"
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "owner",
+      "Value": "toggle-inc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "mine-map-app-server-ecs-stack/mine-map-app-server-cluster/Resource"
+   }
+  },
+  "minemapappserveralbsg3D7C5205": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "mine-map-app-server-ecs-stack/mine-map-app-server-alb-sg",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow from anyone on port 80",
+      "FromPort": 80,
+      "IpProtocol": "tcp",
+      "ToPort": 80
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "owner",
+      "Value": "toggle-inc"
+     }
+    ],
+    "VpcId": "vpc-0705f15af90426f6c"
+   },
+   "Metadata": {
+    "aws:cdk:path": "mine-map-app-server-ecs-stack/mine-map-app-server-alb-sg/Resource"
+   }
+  },
+  "minemapappserveralb5D139F34": {
+   "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+   "Properties": {
+    "LoadBalancerAttributes": [
+     {
+      "Key": "deletion_protection.enabled",
+      "Value": "false"
+     },
+     {
+      "Key": "routing.http2.enabled",
+      "Value": "false"
+     },
+     {
+      "Key": "idle_timeout.timeout_seconds",
+      "Value": "600"
+     }
+    ],
+    "Name": "mine-map-app-server-alb",
+    "Scheme": "internal",
+    "SecurityGroups": [
+     {
+      "Fn::GetAtt": [
+       "minemapappserveralbsg3D7C5205",
+       "GroupId"
+      ]
+     }
+    ],
+    "Subnets": [
+     "subnet-032e248ab8c9596c9",
+     "subnet-0d8cd3300927b3d50",
+     "subnet-073ca1af84f067a69"
+    ],
+    "Tags": [
+     {
+      "Key": "owner",
+      "Value": "toggle-inc"
+     }
+    ],
+    "Type": "application"
+   },
+   "Metadata": {
+    "aws:cdk:path": "mine-map-app-server-ecs-stack/mine-map-app-server-alb/Resource"
+   }
+  },
+  "minemapappserveralbhttplistenerA9AE6238": {
+   "Type": "AWS::ElasticLoadBalancingV2::Listener",
+   "Properties": {
+    "DefaultActions": [
+     {
+      "TargetGroupArn": {
+       "Ref": "minemapappserveralbhttplistenerminemapappserveralbtargetGroupD572BE06"
+      },
+      "Type": "forward"
+     }
+    ],
+    "LoadBalancerArn": {
+     "Ref": "minemapappserveralb5D139F34"
+    },
+    "Port": 80,
+    "Protocol": "HTTP"
+   },
+   "Metadata": {
+    "aws:cdk:path": "mine-map-app-server-ecs-stack/mine-map-app-server-alb/http listener/Resource"
+   }
+  },
+  "minemapappserveralbhttplistenerminemapappserveralbtargetGroupD572BE06": {
+   "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+   "Properties": {
+    "Name": "mine-map-app-server-alb-target",
+    "Port": 80,
+    "Protocol": "HTTP",
+    "ProtocolVersion": "HTTP1",
+    "Tags": [
+     {
+      "Key": "owner",
+      "Value": "toggle-inc"
+     }
+    ],
+    "TargetGroupAttributes": [
+     {
+      "Key": "stickiness.enabled",
+      "Value": "false"
+     }
+    ],
+    "TargetType": "ip",
+    "VpcId": "vpc-0705f15af90426f6c"
+   },
+   "Metadata": {
+    "aws:cdk:path": "mine-map-app-server-ecs-stack/mine-map-app-server-alb/http listener/mine-map-app-server-alb-targetGroup/Resource"
+   }
+  },
+  "minemapappserverfargatetdTaskRole251979DC": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "owner",
+      "Value": "toggle-inc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/TaskRole/Resource"
+   }
+  },
+  "minemapappserverfargatetdTaskRoleDefaultPolicy19FF20D6": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:CreateLogStream",
+        "logs:DescribeLogGroups",
+        "logs:DescribeLogStreams",
+        "logs:PutLogEvents",
+        "s3:*",
+        "ssmmessages:CreateControlChannel",
+        "ssmmessages:CreateDataChannel",
+        "ssmmessages:OpenControlChannel",
+        "ssmmessages:OpenDataChannel"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "minemapappserverfargatetdTaskRoleDefaultPolicy19FF20D6",
+    "Roles": [
+     {
+      "Ref": "minemapappserverfargatetdTaskRole251979DC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/TaskRole/DefaultPolicy/Resource"
+   }
+  },
+  "minemapappserverfargatetd7684DB14": {
+   "Type": "AWS::ECS::TaskDefinition",
+   "Properties": {
+    "ContainerDefinitions": [
+     {
+      "EnvironmentFiles": [
+       {
+        "Type": "s3",
+        "Value": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":s3:::mine-map-resources/commonEnvProd.env"
+          ]
+         ]
+        }
+       }
+      ],
+      "Essential": true,
+      "Image": {
+       "Fn::Join": [
+        "",
+        [
+         {
+          "Fn::Select": [
+           4,
+           {
+            "Fn::Split": [
+             ":",
+             {
+              "Fn::ImportValue": "mine-map-app-server-ecr-stack:ExportsOutputFnGetAttminemapappserverA6D0C2EAArn732D1845"
+             }
+            ]
+           }
+          ]
+         },
+         ".dkr.ecr.",
+         {
+          "Fn::Select": [
+           3,
+           {
+            "Fn::Split": [
+             ":",
+             {
+              "Fn::ImportValue": "mine-map-app-server-ecr-stack:ExportsOutputFnGetAttminemapappserverA6D0C2EAArn732D1845"
+             }
+            ]
+           }
+          ]
+         },
+         ".",
+         {
+          "Ref": "AWS::URLSuffix"
+         },
+         "/",
+         {
+          "Fn::ImportValue": "mine-map-app-server-ecr-stack:ExportsOutputRefminemapappserverA6D0C2EA7ED34876"
+         },
+         ":latest"
+        ]
+       ]
+      },
+      "LogConfiguration": {
+       "LogDriver": "awslogs",
+       "Options": {
+        "awslogs-group": {
+         "Ref": "minemapappserverfargatetdminemapappservercontainerLogGroupCA4CE70B"
+        },
+        "awslogs-stream-prefix": "ECS/minemapapp-stg-server",
+        "awslogs-region": "ap-northeast-1"
+       }
+      },
+      "Name": "mine-map-app-server-container",
+      "PortMappings": [
+       {
+        "ContainerPort": 3000,
+        "Protocol": "tcp"
+       }
+      ]
+     }
+    ],
+    "Cpu": "1024",
+    "ExecutionRoleArn": {
+     "Fn::GetAtt": [
+      "minemapappserverfargatetdExecutionRole99BF68EE",
+      "Arn"
+     ]
+    },
+    "Family": "minemapappserverecsstackminemapappserverfargatetdA0E6CB07",
+    "Memory": "2048",
+    "NetworkMode": "awsvpc",
+    "RequiresCompatibilities": [
+     "FARGATE"
+    ],
+    "Tags": [
+     {
+      "Key": "owner",
+      "Value": "toggle-inc"
+     }
+    ],
+    "TaskRoleArn": {
+     "Fn::GetAtt": [
+      "minemapappserverfargatetdTaskRole251979DC",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/Resource"
+   }
+  },
+  "minemapappserverfargatetdminemapappservercontainerLogGroupCA4CE70B": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "owner",
+      "Value": "toggle-inc"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/mine-map-app-server-container/LogGroup/Resource"
+   }
+  },
+  "minemapappserverfargatetdExecutionRole99BF68EE": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/AmazonS3ReadOnlyAccess"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "owner",
+      "Value": "toggle-inc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/ExecutionRole/Resource"
+   }
+  },
+  "minemapappserverfargatetdExecutionRoleDefaultPolicy87007D7B": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:BatchGetImage",
+        "ecr:GetDownloadUrlForLayer"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::ImportValue": "mine-map-app-server-ecr-stack:ExportsOutputFnGetAttminemapappserverA6D0C2EAArn732D1845"
+       }
+      },
+      {
+       "Action": "ecr:GetAuthorizationToken",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "minemapappserverfargatetdminemapappservercontainerLogGroupCA4CE70B",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "minemapappserverfargatetdExecutionRoleDefaultPolicy87007D7B",
+    "Roles": [
+     {
+      "Ref": "minemapappserverfargatetdExecutionRole99BF68EE"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/ExecutionRole/DefaultPolicy/Resource"
+   }
+  },
+  "minemapappserverhttpsgB1B20576": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "mine-map-app-server-ecs-stack/mine-map-app-server-http-sg",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "Description": "Allow inbound connections from mine-map-app-server ALB",
+      "FromPort": 3000,
+      "IpProtocol": "tcp",
+      "SourceSecurityGroupId": {
+       "Fn::GetAtt": [
+        "minemapappserveralbsg3D7C5205",
+        "GroupId"
+       ]
+      },
+      "ToPort": 3000
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "owner",
+      "Value": "toggle-inc"
+     }
+    ],
+    "VpcId": "vpc-0705f15af90426f6c"
+   },
+   "Metadata": {
+    "aws:cdk:path": "mine-map-app-server-ecs-stack/mine-map-app-server-http-sg/Resource"
+   }
+  },
+  "minemapappserverhttpsgfromminemapappserverecsstackminemapappserveralbsg81D6B6DC3000A781DDED": {
+   "Type": "AWS::EC2::SecurityGroupIngress",
+   "Properties": {
+    "IpProtocol": "tcp",
+    "Description": "Load balancer to target",
+    "FromPort": 3000,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "minemapappserverhttpsgB1B20576",
+      "GroupId"
+     ]
+    },
+    "SourceSecurityGroupId": {
+     "Fn::GetAtt": [
+      "minemapappserveralbsg3D7C5205",
+      "GroupId"
+     ]
+    },
+    "ToPort": 3000
+   },
+   "Metadata": {
+    "aws:cdk:path": "mine-map-app-server-ecs-stack/mine-map-app-server-http-sg/from minemapappserverecsstackminemapappserveralbsg81D6B6DC:3000"
+   }
+  },
+  "minemapappserverfargateServiceEEFEA250": {
+   "Type": "AWS::ECS::Service",
+   "Properties": {
+    "Cluster": {
+     "Ref": "minemapappserverclusterA303E766"
+    },
+    "DeploymentConfiguration": {
+     "MaximumPercent": 200,
+     "MinimumHealthyPercent": 50
+    },
+    "DesiredCount": 1,
+    "EnableECSManagedTags": false,
+    "EnableExecuteCommand": true,
+    "HealthCheckGracePeriodSeconds": 60,
+    "LaunchType": "FARGATE",
+    "LoadBalancers": [
+     {
+      "ContainerName": "mine-map-app-server-container",
+      "ContainerPort": 3000,
+      "TargetGroupArn": {
+       "Ref": "minemapappserveralbhttplistenerminemapappserveralbtargetGroupD572BE06"
+      }
+     }
+    ],
+    "NetworkConfiguration": {
+     "AwsvpcConfiguration": {
+      "AssignPublicIp": "DISABLED",
+      "SecurityGroups": [
+       {
+        "Fn::GetAtt": [
+         "minemapappserverhttpsgB1B20576",
+         "GroupId"
+        ]
+       }
+      ],
+      "Subnets": [
+       "subnet-032e248ab8c9596c9",
+       "subnet-0d8cd3300927b3d50",
+       "subnet-073ca1af84f067a69"
+      ]
+     }
+    },
+    "Tags": [
+     {
+      "Key": "owner",
+      "Value": "toggle-inc"
+     }
+    ],
+    "TaskDefinition": {
+     "Ref": "minemapappserverfargatetd7684DB14"
+    }
+   },
+   "DependsOn": [
+    "minemapappserveralbhttplistenerminemapappserveralbtargetGroupD572BE06",
+    "minemapappserveralbhttplistenerA9AE6238"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate/Service"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31RTU/DMAz9LdzTwIomcaVDIKQdpm135KVe5TVLqjgpmqr+d5J+TIUDJz/7+dl5Ti7ztXx6gG/OVFlnmk6yO3hQtYilrw4Vy26jA3t0YnM2M3wHV4HHI3D9hmcy5Mma1PC3Yo0HMugWtUl7QNeSwiSaYC9Q5XE9quDI3z6cDc1I/1f4NJVD5ijWwJ6UtlCeQINRZKo2znttGk0K0u5t5IqBG+38ypd9FF2aqWfGC/4YLaC/v2eR9oLgKru91YOzIe5s1N1SOqJeaFvFu25tdR8x417wsyyCqtEXwPEkaQiyDS7dx9gS5YUf29WLXMVvuzBR5oLxdEW5H+MPzCwKxNIBAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "mine-map-app-server-ecs-stack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "ExportsOutputRefminemapappserverclusterA303E7662ADB22B1": {
+   "Value": {
+    "Ref": "minemapappserverclusterA303E766"
+   },
+   "Export": {
+    "Name": "mine-map-app-server-ecs-stack:ExportsOutputRefminemapappserverclusterA303E7662ADB22B1"
+   }
+  },
+  "ExportsOutputFnGetAttminemapappserverfargateServiceEEFEA250Name6780D483": {
+   "Value": {
+    "Fn::GetAtt": [
+     "minemapappserverfargateServiceEEFEA250",
+     "Name"
+    ]
+   },
+   "Export": {
+    "Name": "mine-map-app-server-ecs-stack:ExportsOutputFnGetAttminemapappserverfargateServiceEEFEA250Name6780D483"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

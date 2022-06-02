@@ -1,0 +1,501 @@
+{
+  "version": "19.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "mine-map-app-server-ecr-stack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "mine-map-app-server-ecr-stack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "mine-map-app-server-ecr-stack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://716993826013/ap-northeast-1",
+      "properties": {
+        "templateFile": "mine-map-app-server-ecr-stack.template.json",
+        "tags": {
+          "Author": "Mizanur",
+          "owner": "toggle-inc"
+        },
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::716993826013:role/cdk-hnb659fds-deploy-role-716993826013-ap-northeast-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::716993826013:role/cdk-hnb659fds-cfn-exec-role-716993826013-ap-northeast-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-716993826013-ap-northeast-1/4412d6508d789ebd7d8dd32e65fb6352eb339f2df2790bc3df9c53b4f11f82fb.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "mine-map-app-server-ecr-stack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::716993826013:role/cdk-hnb659fds-lookup-role-716993826013-ap-northeast-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "mine-map-app-server-ecr-stack.assets"
+      ],
+      "metadata": {
+        "/mine-map-app-server-ecr-stack": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "Author",
+                "Value": "Mizanur"
+              },
+              {
+                "Key": "owner",
+                "Value": "toggle-inc"
+              }
+            ]
+          }
+        ],
+        "/mine-map-app-server-ecr-stack/mine-map-app-server/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverA6D0C2EA"
+          }
+        ],
+        "/mine-map-app-server-ecr-stack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/mine-map-app-server-ecr-stack/Exports/Output{\"Fn::GetAtt\":[\"minemapappserverA6D0C2EA\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttminemapappserverA6D0C2EAArn732D1845"
+          }
+        ],
+        "/mine-map-app-server-ecr-stack/Exports/Output{\"Ref\":\"minemapappserverA6D0C2EA\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefminemapappserverA6D0C2EA7ED34876"
+          }
+        ],
+        "/mine-map-app-server-ecr-stack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/mine-map-app-server-ecr-stack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "mine-map-app-server-ecr-stack"
+    },
+    "mine-map-app-server-vpc-stack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "mine-map-app-server-vpc-stack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "mine-map-app-server-vpc-stack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://716993826013/ap-northeast-1",
+      "properties": {
+        "templateFile": "mine-map-app-server-vpc-stack.template.json",
+        "tags": {
+          "Author": "Mizanur",
+          "owner": "toggle-inc"
+        },
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::716993826013:role/cdk-hnb659fds-deploy-role-716993826013-ap-northeast-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::716993826013:role/cdk-hnb659fds-cfn-exec-role-716993826013-ap-northeast-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-716993826013-ap-northeast-1/b196d26d75904b8d274dfadbeabe9b522632dcc0ffc074592b834be18f6901b5.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "mine-map-app-server-vpc-stack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::716993826013:role/cdk-hnb659fds-lookup-role-716993826013-ap-northeast-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "mine-map-app-server-vpc-stack.assets"
+      ],
+      "metadata": {
+        "/mine-map-app-server-vpc-stack": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "Author",
+                "Value": "Mizanur"
+              },
+              {
+                "Key": "owner",
+                "Value": "toggle-inc"
+              }
+            ]
+          }
+        ],
+        "/mine-map-app-server-vpc-stack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/mine-map-app-server-vpc-stack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/mine-map-app-server-vpc-stack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "mine-map-app-server-vpc-stack"
+    },
+    "mine-map-app-server-ecs-stack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "mine-map-app-server-ecs-stack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "mine-map-app-server-ecs-stack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://716993826013/ap-northeast-1",
+      "properties": {
+        "templateFile": "mine-map-app-server-ecs-stack.template.json",
+        "tags": {
+          "Author": "Mizanur",
+          "owner": "toggle-inc"
+        },
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::716993826013:role/cdk-hnb659fds-deploy-role-716993826013-ap-northeast-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::716993826013:role/cdk-hnb659fds-cfn-exec-role-716993826013-ap-northeast-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-716993826013-ap-northeast-1/a4d3a69492c26b60034a1515d52639e2d584bc0a70bdbd7d4a3109d631475bcd.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "mine-map-app-server-ecs-stack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::716993826013:role/cdk-hnb659fds-lookup-role-716993826013-ap-northeast-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "mine-map-app-server-ecr-stack",
+        "mine-map-app-server-ecs-stack.assets"
+      ],
+      "metadata": {
+        "/mine-map-app-server-ecs-stack": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "Author",
+                "Value": "Mizanur"
+              },
+              {
+                "Key": "owner",
+                "Value": "toggle-inc"
+              }
+            ]
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/mine-map-app-server-cluster/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverclusterA303E766"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/mine-map-app-server-alb-sg/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserveralbsg3D7C5205"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/mine-map-app-server-alb/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserveralb5D139F34"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/mine-map-app-server-alb/http listener/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserveralbhttplistenerA9AE6238"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/mine-map-app-server-alb/http listener/mine-map-app-server-alb-targetGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserveralbhttplistenerminemapappserveralbtargetGroupD572BE06"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/TaskRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverfargatetdTaskRole251979DC"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/TaskRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverfargatetdTaskRoleDefaultPolicy19FF20D6"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverfargatetd7684DB14"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/mine-map-app-server-container/LogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverfargatetdminemapappservercontainerLogGroupCA4CE70B"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/ExecutionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverfargatetdExecutionRole99BF68EE"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/ExecutionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverfargatetdExecutionRoleDefaultPolicy87007D7B"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/mine-map-app-server-http-sg/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverhttpsgB1B20576"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/mine-map-app-server-http-sg/from minemapappserverecsstackminemapappserveralbsg81D6B6DC:3000": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverhttpsgfromminemapappserverecsstackminemapappserveralbsg81D6B6DC3000A781DDED"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/mine-map-app-server-fargate/Service": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverfargateServiceEEFEA250"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/Exports/Output{\"Ref\":\"minemapappserverclusterA303E766\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefminemapappserverclusterA303E7662ADB22B1"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/Exports/Output{\"Fn::GetAtt\":[\"minemapappserverfargateServiceEEFEA250\",\"Name\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttminemapappserverfargateServiceEEFEA250Name6780D483"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/mine-map-app-server-ecs-stack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "mine-map-app-server-ecs-stack"
+    },
+    "mine-map-app-server-pipeline-stack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "mine-map-app-server-pipeline-stack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "mine-map-app-server-pipeline-stack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://716993826013/ap-northeast-1",
+      "properties": {
+        "templateFile": "mine-map-app-server-pipeline-stack.template.json",
+        "tags": {
+          "owner": "toggle-inc"
+        },
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::716993826013:role/cdk-hnb659fds-deploy-role-716993826013-ap-northeast-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::716993826013:role/cdk-hnb659fds-cfn-exec-role-716993826013-ap-northeast-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-716993826013-ap-northeast-1/95a1343b97a1acd87f29f5f6abc9cb2abcb88d11863265f98c1ef958c5fa0216.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "mine-map-app-server-pipeline-stack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::716993826013:role/cdk-hnb659fds-lookup-role-716993826013-ap-northeast-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "mine-map-app-server-ecr-stack",
+        "mine-map-app-server-ecs-stack",
+        "mine-map-app-server-pipeline-stack.assets"
+      ],
+      "metadata": {
+        "/mine-map-app-server-pipeline-stack": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "owner",
+                "Value": "toggle-inc"
+              }
+            ]
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/mine-map-app-server-project/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverprojectRole3CC4BBE7"
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/mine-map-app-server-project/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverprojectRoleDefaultPolicy70C8727F"
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/mine-map-app-server-project/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverproject5FFFA308"
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/ArtifactsBucketEncryptionKey/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverpipelineArtifactsBucketEncryptionKey1AB3C43D"
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/ArtifactsBucketEncryptionKeyAlias/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverpipelineArtifactsBucketEncryptionKeyAliasC69C7CEE"
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/ArtifactsBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverpipelineArtifactsBucket502134C1"
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/ArtifactsBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverpipelineArtifactsBucketPolicyB47FDF8B"
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverpipelineRole8FCCDE44"
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverpipelineRoleDefaultPolicyD1267981"
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverpipeline41DB61CA"
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Source/Github/WebhookResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverpipelineSourceGithubWebhookResource91FF8A97"
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Build/mine-map-app-server-CodeBuild/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverpipelineBuildminemapappserverCodeBuildCodePipelineActionRole513F59B5"
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Build/mine-map-app-server-CodeBuild/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverpipelineBuildminemapappserverCodeBuildCodePipelineActionRoleDefaultPolicyD4A2869D"
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Deploy/mine-map-app-server-ECSDeploy/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverpipelineDeployminemapappserverECSDeployCodePipelineActionRole31D2C14B"
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Deploy/mine-map-app-server-ECSDeploy/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "minemapappserverpipelineDeployminemapappserverECSDeployCodePipelineActionRoleDefaultPolicyFC7E0899"
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/mine-map-app-server-pipeline-stack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "mine-map-app-server-pipeline-stack"
+    }
+  }
+}

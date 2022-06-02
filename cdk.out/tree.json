@@ -1,0 +1,2225 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "constructs.Construct",
+          "version": "10.1.25"
+        }
+      },
+      "mine-map-app-server-ecr-stack": {
+        "id": "mine-map-app-server-ecr-stack",
+        "path": "mine-map-app-server-ecr-stack",
+        "children": {
+          "mine-map-app-server": {
+            "id": "mine-map-app-server",
+            "path": "mine-map-app-server-ecr-stack/mine-map-app-server",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "mine-map-app-server-ecr-stack/mine-map-app-server/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECR::Repository",
+                  "aws:cdk:cloudformation:props": {
+                    "imageScanningConfiguration": {
+                      "scanOnPush": false
+                    },
+                    "repositoryName": "mine-map-app-server",
+                    "tags": [
+                      {
+                        "key": "owner",
+                        "value": "toggle-inc"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecr.CfnRepository",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecr.Repository",
+              "version": "2.25.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "mine-map-app-server-ecr-stack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "mine-map-app-server-ecr-stack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.25"
+            }
+          },
+          "Exports": {
+            "id": "Exports",
+            "path": "mine-map-app-server-ecr-stack/Exports",
+            "children": {
+              "Output{\"Fn::GetAtt\":[\"minemapappserverA6D0C2EA\",\"Arn\"]}": {
+                "id": "Output{\"Fn::GetAtt\":[\"minemapappserverA6D0C2EA\",\"Arn\"]}",
+                "path": "mine-map-app-server-ecr-stack/Exports/Output{\"Fn::GetAtt\":[\"minemapappserverA6D0C2EA\",\"Arn\"]}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.25.0"
+                }
+              },
+              "Output{\"Ref\":\"minemapappserverA6D0C2EA\"}": {
+                "id": "Output{\"Ref\":\"minemapappserverA6D0C2EA\"}",
+                "path": "mine-map-app-server-ecr-stack/Exports/Output{\"Ref\":\"minemapappserverA6D0C2EA\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.25"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.25.0"
+        }
+      },
+      "mine-map-app-server-vpc-stack": {
+        "id": "mine-map-app-server-vpc-stack",
+        "path": "mine-map-app-server-vpc-stack",
+        "children": {
+          "mine-map-app-server-vpc": {
+            "id": "mine-map-app-server-vpc",
+            "path": "mine-map-app-server-vpc-stack/mine-map-app-server-vpc",
+            "children": {
+              "PublicSubnet1": {
+                "id": "PublicSubnet1",
+                "path": "mine-map-app-server-vpc-stack/mine-map-app-server-vpc/PublicSubnet1",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.25.0"
+                }
+              },
+              "PublicSubnet2": {
+                "id": "PublicSubnet2",
+                "path": "mine-map-app-server-vpc-stack/mine-map-app-server-vpc/PublicSubnet2",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.25.0"
+                }
+              },
+              "PublicSubnet3": {
+                "id": "PublicSubnet3",
+                "path": "mine-map-app-server-vpc-stack/mine-map-app-server-vpc/PublicSubnet3",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.25.0"
+                }
+              },
+              "PrivateSubnet1": {
+                "id": "PrivateSubnet1",
+                "path": "mine-map-app-server-vpc-stack/mine-map-app-server-vpc/PrivateSubnet1",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.25.0"
+                }
+              },
+              "PrivateSubnet2": {
+                "id": "PrivateSubnet2",
+                "path": "mine-map-app-server-vpc-stack/mine-map-app-server-vpc/PrivateSubnet2",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.25.0"
+                }
+              },
+              "PrivateSubnet3": {
+                "id": "PrivateSubnet3",
+                "path": "mine-map-app-server-vpc-stack/mine-map-app-server-vpc/PrivateSubnet3",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.Resource",
+              "version": "2.25.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "mine-map-app-server-vpc-stack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "mine-map-app-server-vpc-stack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.25"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.25.0"
+        }
+      },
+      "mine-map-app-server-ecs-stack": {
+        "id": "mine-map-app-server-ecs-stack",
+        "path": "mine-map-app-server-ecs-stack",
+        "children": {
+          "mine-map-app-server-cluster": {
+            "id": "mine-map-app-server-cluster",
+            "path": "mine-map-app-server-ecs-stack/mine-map-app-server-cluster",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "mine-map-app-server-ecs-stack/mine-map-app-server-cluster/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::Cluster",
+                  "aws:cdk:cloudformation:props": {
+                    "clusterName": "mine-map-app-server-cluster",
+                    "clusterSettings": [
+                      {
+                        "name": "containerInsights",
+                        "value": "enabled"
+                      }
+                    ],
+                    "tags": [
+                      {
+                        "key": "owner",
+                        "value": "toggle-inc"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnCluster",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.Cluster",
+              "version": "2.25.0"
+            }
+          },
+          "mine-map-app-server-alb-sg": {
+            "id": "mine-map-app-server-alb-sg",
+            "path": "mine-map-app-server-ecs-stack/mine-map-app-server-alb-sg",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "mine-map-app-server-ecs-stack/mine-map-app-server-alb-sg/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "mine-map-app-server-ecs-stack/mine-map-app-server-alb-sg",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "tcp",
+                        "fromPort": 80,
+                        "toPort": 80,
+                        "description": "Allow from anyone on port 80"
+                      }
+                    ],
+                    "tags": [
+                      {
+                        "key": "owner",
+                        "value": "toggle-inc"
+                      }
+                    ],
+                    "vpcId": "vpc-0705f15af90426f6c"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.25.0"
+            }
+          },
+          "mine-map-app-server-alb": {
+            "id": "mine-map-app-server-alb",
+            "path": "mine-map-app-server-ecs-stack/mine-map-app-server-alb",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "mine-map-app-server-ecs-stack/mine-map-app-server-alb/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+                  "aws:cdk:cloudformation:props": {
+                    "loadBalancerAttributes": [
+                      {
+                        "key": "deletion_protection.enabled",
+                        "value": "false"
+                      },
+                      {
+                        "key": "routing.http2.enabled",
+                        "value": "false"
+                      },
+                      {
+                        "key": "idle_timeout.timeout_seconds",
+                        "value": "600"
+                      }
+                    ],
+                    "name": "mine-map-app-server-alb",
+                    "scheme": "internal",
+                    "securityGroups": [
+                      {
+                        "Fn::GetAtt": [
+                          "minemapappserveralbsg3D7C5205",
+                          "GroupId"
+                        ]
+                      }
+                    ],
+                    "subnets": [
+                      "subnet-032e248ab8c9596c9",
+                      "subnet-0d8cd3300927b3d50",
+                      "subnet-073ca1af84f067a69"
+                    ],
+                    "tags": [
+                      {
+                        "key": "owner",
+                        "value": "toggle-inc"
+                      }
+                    ],
+                    "type": "application"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnLoadBalancer",
+                  "version": "2.25.0"
+                }
+              },
+              "http listener": {
+                "id": "http listener",
+                "path": "mine-map-app-server-ecs-stack/mine-map-app-server-alb/http listener",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "mine-map-app-server-ecs-stack/mine-map-app-server-alb/http listener/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::Listener",
+                      "aws:cdk:cloudformation:props": {
+                        "defaultActions": [
+                          {
+                            "type": "forward",
+                            "targetGroupArn": {
+                              "Ref": "minemapappserveralbhttplistenerminemapappserveralbtargetGroupD572BE06"
+                            }
+                          }
+                        ],
+                        "loadBalancerArn": {
+                          "Ref": "minemapappserveralb5D139F34"
+                        },
+                        "port": 80,
+                        "protocol": "HTTP"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListener",
+                      "version": "2.25.0"
+                    }
+                  },
+                  "mine-map-app-server-alb-targetGroup": {
+                    "id": "mine-map-app-server-alb-targetGroup",
+                    "path": "mine-map-app-server-ecs-stack/mine-map-app-server-alb/http listener/mine-map-app-server-alb-targetGroup",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "mine-map-app-server-ecs-stack/mine-map-app-server-alb/http listener/mine-map-app-server-alb-targetGroup/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+                          "aws:cdk:cloudformation:props": {
+                            "name": "mine-map-app-server-alb-target",
+                            "port": 80,
+                            "protocol": "HTTP",
+                            "protocolVersion": "HTTP1",
+                            "tags": [
+                              {
+                                "key": "owner",
+                                "value": "toggle-inc"
+                              }
+                            ],
+                            "targetGroupAttributes": [
+                              {
+                                "key": "stickiness.enabled",
+                                "value": "false"
+                              }
+                            ],
+                            "targetType": "ip",
+                            "vpcId": "vpc-0705f15af90426f6c"
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnTargetGroup",
+                          "version": "2.25.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationTargetGroup",
+                      "version": "2.25.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListener",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationLoadBalancer",
+              "version": "2.25.0"
+            }
+          },
+          "mine-map-app-server-fargate-td": {
+            "id": "mine-map-app-server-fargate-td",
+            "path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td",
+            "children": {
+              "TaskRole": {
+                "id": "TaskRole",
+                "path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/TaskRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/TaskRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "ecs-tasks.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "tags": [
+                          {
+                            "key": "owner",
+                            "value": "toggle-inc"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.25.0"
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/TaskRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/TaskRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "logs:CreateLogStream",
+                                    "logs:DescribeLogGroups",
+                                    "logs:DescribeLogStreams",
+                                    "logs:PutLogEvents",
+                                    "s3:*",
+                                    "ssmmessages:CreateControlChannel",
+                                    "ssmmessages:CreateDataChannel",
+                                    "ssmmessages:OpenControlChannel",
+                                    "ssmmessages:OpenDataChannel"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": "*"
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "minemapappserverfargatetdTaskRoleDefaultPolicy19FF20D6",
+                            "roles": [
+                              {
+                                "Ref": "minemapappserverfargatetdTaskRole251979DC"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                          "version": "2.25.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Policy",
+                      "version": "2.25.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.25.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "essential": true,
+                        "image": {
+                          "Fn::Join": [
+                            "",
+                            [
+                              {
+                                "Fn::Select": [
+                                  4,
+                                  {
+                                    "Fn::Split": [
+                                      ":",
+                                      {
+                                        "Fn::ImportValue": "mine-map-app-server-ecr-stack:ExportsOutputFnGetAttminemapappserverA6D0C2EAArn732D1845"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              ".dkr.ecr.",
+                              {
+                                "Fn::Select": [
+                                  3,
+                                  {
+                                    "Fn::Split": [
+                                      ":",
+                                      {
+                                        "Fn::ImportValue": "mine-map-app-server-ecr-stack:ExportsOutputFnGetAttminemapappserverA6D0C2EAArn732D1845"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              ".",
+                              {
+                                "Ref": "AWS::URLSuffix"
+                              },
+                              "/",
+                              {
+                                "Fn::ImportValue": "mine-map-app-server-ecr-stack:ExportsOutputRefminemapappserverA6D0C2EA7ED34876"
+                              },
+                              ":latest"
+                            ]
+                          ]
+                        },
+                        "name": "mine-map-app-server-container",
+                        "portMappings": [
+                          {
+                            "containerPort": 3000,
+                            "protocol": "tcp"
+                          }
+                        ],
+                        "logConfiguration": {
+                          "logDriver": "awslogs",
+                          "options": {
+                            "awslogs-group": {
+                              "Ref": "minemapappserverfargatetdminemapappservercontainerLogGroupCA4CE70B"
+                            },
+                            "awslogs-stream-prefix": "ECS/minemapapp-stg-server",
+                            "awslogs-region": "ap-northeast-1"
+                          }
+                        },
+                        "environmentFiles": [
+                          {
+                            "type": "s3",
+                            "value": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "arn:",
+                                  {
+                                    "Ref": "AWS::Partition"
+                                  },
+                                  ":s3:::mine-map-resources/commonEnvProd.env"
+                                ]
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cpu": "1024",
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "minemapappserverfargatetdExecutionRole99BF68EE",
+                        "Arn"
+                      ]
+                    },
+                    "family": "minemapappserverecsstackminemapappserverfargatetdA0E6CB07",
+                    "memory": "2048",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                      "FARGATE"
+                    ],
+                    "tags": [
+                      {
+                        "key": "owner",
+                        "value": "toggle-inc"
+                      }
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "minemapappserverfargatetdTaskRole251979DC",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnTaskDefinition",
+                  "version": "2.25.0"
+                }
+              },
+              "mine-map-app-server-container": {
+                "id": "mine-map-app-server-container",
+                "path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/mine-map-app-server-container",
+                "children": {
+                  "LogGroup": {
+                    "id": "LogGroup",
+                    "path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/mine-map-app-server-container/LogGroup",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/mine-map-app-server-container/LogGroup/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                          "aws:cdk:cloudformation:props": {
+                            "tags": [
+                              {
+                                "key": "owner",
+                                "value": "toggle-inc"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                          "version": "2.25.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+                      "version": "2.25.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.ContainerDefinition",
+                  "version": "2.25.0"
+                }
+              },
+              "ExecutionRole": {
+                "id": "ExecutionRole",
+                "path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/ExecutionRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/ExecutionRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "ecs-tasks.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/AmazonS3ReadOnlyAccess"
+                              ]
+                            ]
+                          }
+                        ],
+                        "tags": [
+                          {
+                            "key": "owner",
+                            "value": "toggle-inc"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.25.0"
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/ExecutionRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate-td/ExecutionRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "ecr:BatchCheckLayerAvailability",
+                                    "ecr:BatchGetImage",
+                                    "ecr:GetDownloadUrlForLayer"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::ImportValue": "mine-map-app-server-ecr-stack:ExportsOutputFnGetAttminemapappserverA6D0C2EAArn732D1845"
+                                  }
+                                },
+                                {
+                                  "Action": "ecr:GetAuthorizationToken",
+                                  "Effect": "Allow",
+                                  "Resource": "*"
+                                },
+                                {
+                                  "Action": [
+                                    "logs:CreateLogStream",
+                                    "logs:PutLogEvents"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::GetAtt": [
+                                      "minemapappserverfargatetdminemapappservercontainerLogGroupCA4CE70B",
+                                      "Arn"
+                                    ]
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "minemapappserverfargatetdExecutionRoleDefaultPolicy87007D7B",
+                            "roles": [
+                              {
+                                "Ref": "minemapappserverfargatetdExecutionRole99BF68EE"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                          "version": "2.25.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Policy",
+                      "version": "2.25.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateTaskDefinition",
+              "version": "2.25.0"
+            }
+          },
+          "mine-map-app-server-bucket": {
+            "id": "mine-map-app-server-bucket",
+            "path": "mine-map-app-server-ecs-stack/mine-map-app-server-bucket",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+              "version": "2.25.0"
+            }
+          },
+          "mine-map-app-server-http-sg": {
+            "id": "mine-map-app-server-http-sg",
+            "path": "mine-map-app-server-ecs-stack/mine-map-app-server-http-sg",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "mine-map-app-server-ecs-stack/mine-map-app-server-http-sg/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "mine-map-app-server-ecs-stack/mine-map-app-server-http-sg",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "sourceSecurityGroupId": {
+                          "Fn::GetAtt": [
+                            "minemapappserveralbsg3D7C5205",
+                            "GroupId"
+                          ]
+                        },
+                        "ipProtocol": "tcp",
+                        "fromPort": 3000,
+                        "toPort": 3000,
+                        "description": "Allow inbound connections from mine-map-app-server ALB"
+                      }
+                    ],
+                    "tags": [
+                      {
+                        "key": "owner",
+                        "value": "toggle-inc"
+                      }
+                    ],
+                    "vpcId": "vpc-0705f15af90426f6c"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.25.0"
+                }
+              },
+              "from minemapappserverecsstackminemapappserveralbsg81D6B6DC:3000": {
+                "id": "from minemapappserverecsstackminemapappserveralbsg81D6B6DC:3000",
+                "path": "mine-map-app-server-ecs-stack/mine-map-app-server-http-sg/from minemapappserverecsstackminemapappserveralbsg81D6B6DC:3000",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupIngress",
+                  "aws:cdk:cloudformation:props": {
+                    "ipProtocol": "tcp",
+                    "description": "Load balancer to target",
+                    "fromPort": 3000,
+                    "groupId": {
+                      "Fn::GetAtt": [
+                        "minemapappserverhttpsgB1B20576",
+                        "GroupId"
+                      ]
+                    },
+                    "sourceSecurityGroupId": {
+                      "Fn::GetAtt": [
+                        "minemapappserveralbsg3D7C5205",
+                        "GroupId"
+                      ]
+                    },
+                    "toPort": 3000
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroupIngress",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.25.0"
+            }
+          },
+          "mine-map-app-server-fargate": {
+            "id": "mine-map-app-server-fargate",
+            "path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate",
+            "children": {
+              "Service": {
+                "id": "Service",
+                "path": "mine-map-app-server-ecs-stack/mine-map-app-server-fargate/Service",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::Service",
+                  "aws:cdk:cloudformation:props": {
+                    "cluster": {
+                      "Ref": "minemapappserverclusterA303E766"
+                    },
+                    "deploymentConfiguration": {
+                      "maximumPercent": 200,
+                      "minimumHealthyPercent": 50
+                    },
+                    "desiredCount": 1,
+                    "enableEcsManagedTags": false,
+                    "enableExecuteCommand": true,
+                    "healthCheckGracePeriodSeconds": 60,
+                    "launchType": "FARGATE",
+                    "loadBalancers": [
+                      {
+                        "targetGroupArn": {
+                          "Ref": "minemapappserveralbhttplistenerminemapappserveralbtargetGroupD572BE06"
+                        },
+                        "containerName": "mine-map-app-server-container",
+                        "containerPort": 3000
+                      }
+                    ],
+                    "networkConfiguration": {
+                      "awsvpcConfiguration": {
+                        "assignPublicIp": "DISABLED",
+                        "subnets": [
+                          "subnet-032e248ab8c9596c9",
+                          "subnet-0d8cd3300927b3d50",
+                          "subnet-073ca1af84f067a69"
+                        ],
+                        "securityGroups": [
+                          {
+                            "Fn::GetAtt": [
+                              "minemapappserverhttpsgB1B20576",
+                              "GroupId"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "tags": [
+                      {
+                        "key": "owner",
+                        "value": "toggle-inc"
+                      }
+                    ],
+                    "taskDefinition": {
+                      "Ref": "minemapappserverfargatetd7684DB14"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnService",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateService",
+              "version": "2.25.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "mine-map-app-server-ecs-stack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "mine-map-app-server-ecs-stack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.25"
+            }
+          },
+          "Exports": {
+            "id": "Exports",
+            "path": "mine-map-app-server-ecs-stack/Exports",
+            "children": {
+              "Output{\"Ref\":\"minemapappserverclusterA303E766\"}": {
+                "id": "Output{\"Ref\":\"minemapappserverclusterA303E766\"}",
+                "path": "mine-map-app-server-ecs-stack/Exports/Output{\"Ref\":\"minemapappserverclusterA303E766\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.25.0"
+                }
+              },
+              "Output{\"Fn::GetAtt\":[\"minemapappserverfargateServiceEEFEA250\",\"Name\"]}": {
+                "id": "Output{\"Fn::GetAtt\":[\"minemapappserverfargateServiceEEFEA250\",\"Name\"]}",
+                "path": "mine-map-app-server-ecs-stack/Exports/Output{\"Fn::GetAtt\":[\"minemapappserverfargateServiceEEFEA250\",\"Name\"]}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.25"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.25.0"
+        }
+      },
+      "mine-map-app-server-pipeline-stack": {
+        "id": "mine-map-app-server-pipeline-stack",
+        "path": "mine-map-app-server-pipeline-stack",
+        "children": {
+          "mine-map-app-server-project": {
+            "id": "mine-map-app-server-project",
+            "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-project",
+            "children": {
+              "Role": {
+                "id": "Role",
+                "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-project/Role",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-project/Role/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "codebuild.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "tags": [
+                          {
+                            "key": "owner",
+                            "value": "toggle-inc"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.25.0"
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-project/Role/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-project/Role/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "secretsmanager:GetSecretValue",
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    "arn:aws:secretsmanager:ap-northeast-1:716993826013:secret:github-secret-token-0oR5Qz",
+                                    "arn:aws:secretsmanager:ap-northeast-1:716993826013:secret:github-secret-token-0oR5Qz*"
+                                  ]
+                                },
+                                {
+                                  "Action": [
+                                    "logs:CreateLogGroup",
+                                    "logs:CreateLogStream",
+                                    "logs:PutLogEvents"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":logs:ap-northeast-1:716993826013:log-group:/aws/codebuild/",
+                                          {
+                                            "Ref": "minemapappserverproject5FFFA308"
+                                          },
+                                          ":*"
+                                        ]
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":logs:ap-northeast-1:716993826013:log-group:/aws/codebuild/",
+                                          {
+                                            "Ref": "minemapappserverproject5FFFA308"
+                                          }
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Action": [
+                                    "codebuild:BatchPutCodeCoverages",
+                                    "codebuild:BatchPutTestCases",
+                                    "codebuild:CreateReport",
+                                    "codebuild:CreateReportGroup",
+                                    "codebuild:UpdateReport"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":codebuild:ap-northeast-1:716993826013:report-group/",
+                                        {
+                                          "Ref": "minemapappserverproject5FFFA308"
+                                        },
+                                        "-*"
+                                      ]
+                                    ]
+                                  }
+                                },
+                                {
+                                  "Action": [
+                                    "ecr:BatchCheckLayerAvailability",
+                                    "ecr:BatchGetImage",
+                                    "ecr:CompleteLayerUpload",
+                                    "ecr:GetDownloadUrlForLayer",
+                                    "ecr:InitiateLayerUpload",
+                                    "ecr:PutImage",
+                                    "ecr:UploadLayerPart"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::ImportValue": "mine-map-app-server-ecr-stack:ExportsOutputFnGetAttminemapappserverA6D0C2EAArn732D1845"
+                                  }
+                                },
+                                {
+                                  "Action": "ecr:GetAuthorizationToken",
+                                  "Effect": "Allow",
+                                  "Resource": "*"
+                                },
+                                {
+                                  "Action": [
+                                    "s3:Abort*",
+                                    "s3:DeleteObject*",
+                                    "s3:GetBucket*",
+                                    "s3:GetObject*",
+                                    "s3:List*",
+                                    "s3:PutObject",
+                                    "s3:PutObjectLegalHold",
+                                    "s3:PutObjectRetention",
+                                    "s3:PutObjectTagging",
+                                    "s3:PutObjectVersionTagging"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "minemapappserverpipelineArtifactsBucket502134C1",
+                                        "Arn"
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Fn::GetAtt": [
+                                              "minemapappserverpipelineArtifactsBucket502134C1",
+                                              "Arn"
+                                            ]
+                                          },
+                                          "/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Action": [
+                                    "kms:Decrypt",
+                                    "kms:DescribeKey",
+                                    "kms:Encrypt",
+                                    "kms:GenerateDataKey*",
+                                    "kms:ReEncrypt*"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::GetAtt": [
+                                      "minemapappserverpipelineArtifactsBucketEncryptionKey1AB3C43D",
+                                      "Arn"
+                                    ]
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "minemapappserverprojectRoleDefaultPolicy70C8727F",
+                            "roles": [
+                              {
+                                "Ref": "minemapappserverprojectRole3CC4BBE7"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                          "version": "2.25.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Policy",
+                      "version": "2.25.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.25.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-project/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CodeBuild::Project",
+                  "aws:cdk:cloudformation:props": {
+                    "artifacts": {
+                      "type": "NO_ARTIFACTS"
+                    },
+                    "environment": {
+                      "type": "LINUX_CONTAINER",
+                      "image": "aws/codebuild/amazonlinux2-x86_64-standard:3.0",
+                      "imagePullCredentialsType": "CODEBUILD",
+                      "privilegedMode": true,
+                      "computeType": "BUILD_GENERAL1_SMALL",
+                      "environmentVariables": [
+                        {
+                          "name": "REPOSITORY_URI",
+                          "type": "PLAINTEXT",
+                          "value": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::Select": [
+                                    4,
+                                    {
+                                      "Fn::Split": [
+                                        ":",
+                                        {
+                                          "Fn::ImportValue": "mine-map-app-server-ecr-stack:ExportsOutputFnGetAttminemapappserverA6D0C2EAArn732D1845"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                ".dkr.ecr.",
+                                {
+                                  "Fn::Select": [
+                                    3,
+                                    {
+                                      "Fn::Split": [
+                                        ":",
+                                        {
+                                          "Fn::ImportValue": "mine-map-app-server-ecr-stack:ExportsOutputFnGetAttminemapappserverA6D0C2EAArn732D1845"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                ".",
+                                {
+                                  "Ref": "AWS::URLSuffix"
+                                },
+                                "/",
+                                {
+                                  "Fn::ImportValue": "mine-map-app-server-ecr-stack:ExportsOutputRefminemapappserverA6D0C2EA7ED34876"
+                                }
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "name": "AWS_ACCOUNT_ID",
+                          "type": "PLAINTEXT",
+                          "value": "716993826013"
+                        },
+                        {
+                          "name": "AWS_STACK_REGION",
+                          "type": "PLAINTEXT",
+                          "value": "ap-northeast-1"
+                        },
+                        {
+                          "name": "GITHUB_AUTH_TOKEN",
+                          "type": "SECRETS_MANAGER",
+                          "value": "arn:aws:secretsmanager:ap-northeast-1:716993826013:secret:github-secret-token-0oR5Qz"
+                        },
+                        {
+                          "name": "CONTAINER_NAME",
+                          "type": "PLAINTEXT",
+                          "value": "mine-map-app-server-container"
+                        }
+                      ]
+                    },
+                    "serviceRole": {
+                      "Fn::GetAtt": [
+                        "minemapappserverprojectRole3CC4BBE7",
+                        "Arn"
+                      ]
+                    },
+                    "source": {
+                      "type": "GITHUB",
+                      "reportBuildStatus": true,
+                      "location": "https://github.com/toggle-inc/mine_map_app_server.git",
+                      "buildSpec": "{\n  \"version\": \"0.2\",\n  \"env\": {\n    \"shell\": \"bash\"\n  },\n  \"phases\": {\n    \"pre_build\": {\n      \"commands\": [\n        \"echo logging in to AWS ECR\",\n        \"aws --version\",\n        \"echo $AWS_STACK_REGION\",\n        \"echo $CONTAINER_NAME\",\n        \"aws ecr get-login-password --region ${AWS_STACK_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_STACK_REGION}.amazonaws.com\",\n        \"COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)\",\n        \"echo $COMMIT_HASH\",\n        \"IMAGE_TAG=${COMMIT_HASH:=latest}\",\n        \"echo $IMAGE_TAG\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"echo Build started on `date`\",\n        \"echo Build Docker image\",\n        \"docker build -f ${CODEBUILD_SRC_DIR}/Dockerfile -t ${REPOSITORY_URI}:latest ./\",\n        \"echo Running \\\"docker tag ${REPOSITORY_URI}:latest ${REPOSITORY_URI}:${IMAGE_TAG}\\\"\",\n        \"docker tag ${REPOSITORY_URI}:latest ${REPOSITORY_URI}:${IMAGE_TAG}\"\n      ]\n    },\n    \"post_build\": {\n      \"commands\": [\n        \"echo Build completed on `date`\",\n        \"echo Push Docker image\",\n        \"docker push ${REPOSITORY_URI}:latest\",\n        \"docker push ${REPOSITORY_URI}:${IMAGE_TAG}\",\n        \"printf \\\"[{\\\\\\\"name\\\\\\\": \\\\\\\"$CONTAINER_NAME\\\\\\\", \\\\\\\"imageUri\\\\\\\": \\\\\\\"$REPOSITORY_URI:$IMAGE_TAG\\\\\\\"}]\\\" > docker_image_definition.json\"\n      ]\n    }\n  },\n  \"artifacts\": {\n    \"files\": [\n      \"docker_image_definition.json\"\n    ]\n  }\n}"
+                    },
+                    "cache": {
+                      "type": "NO_CACHE"
+                    },
+                    "encryptionKey": {
+                      "Fn::GetAtt": [
+                        "minemapappserverpipelineArtifactsBucketEncryptionKey1AB3C43D",
+                        "Arn"
+                      ]
+                    },
+                    "name": "mine-map-app-server-project",
+                    "tags": [
+                      {
+                        "key": "owner",
+                        "value": "toggle-inc"
+                      }
+                    ],
+                    "triggers": {
+                      "webhook": false
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_codebuild.CfnProject",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_codebuild.Project",
+              "version": "2.25.0"
+            }
+          },
+          "mine-map-app-server-pipeline": {
+            "id": "mine-map-app-server-pipeline",
+            "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline",
+            "children": {
+              "ArtifactsBucketEncryptionKey": {
+                "id": "ArtifactsBucketEncryptionKey",
+                "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/ArtifactsBucketEncryptionKey",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/ArtifactsBucketEncryptionKey/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::KMS::Key",
+                      "aws:cdk:cloudformation:props": {
+                        "keyPolicy": {
+                          "Statement": [
+                            {
+                              "Action": "kms:*",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "AWS": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":iam::716993826013:root"
+                                    ]
+                                  ]
+                                }
+                              },
+                              "Resource": "*"
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "tags": [
+                          {
+                            "key": "owner",
+                            "value": "toggle-inc"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_kms.CfnKey",
+                      "version": "2.25.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_kms.Key",
+                  "version": "2.25.0"
+                }
+              },
+              "ArtifactsBucketEncryptionKeyAlias": {
+                "id": "ArtifactsBucketEncryptionKeyAlias",
+                "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/ArtifactsBucketEncryptionKeyAlias",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/ArtifactsBucketEncryptionKeyAlias/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::KMS::Alias",
+                      "aws:cdk:cloudformation:props": {
+                        "aliasName": "alias/codepipeline-minemapappserverpipelinestackminemapappserverpipeline74bd63dd",
+                        "targetKeyId": {
+                          "Fn::GetAtt": [
+                            "minemapappserverpipelineArtifactsBucketEncryptionKey1AB3C43D",
+                            "Arn"
+                          ]
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_kms.CfnAlias",
+                      "version": "2.25.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_kms.Alias",
+                  "version": "2.25.0"
+                }
+              },
+              "ArtifactsBucket": {
+                "id": "ArtifactsBucket",
+                "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/ArtifactsBucket",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/ArtifactsBucket/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                      "aws:cdk:cloudformation:props": {
+                        "bucketEncryption": {
+                          "serverSideEncryptionConfiguration": [
+                            {
+                              "serverSideEncryptionByDefault": {
+                                "sseAlgorithm": "aws:kms",
+                                "kmsMasterKeyId": {
+                                  "Fn::GetAtt": [
+                                    "minemapappserverpipelineArtifactsBucketEncryptionKey1AB3C43D",
+                                    "Arn"
+                                  ]
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "publicAccessBlockConfiguration": {
+                          "blockPublicAcls": true,
+                          "blockPublicPolicy": true,
+                          "ignorePublicAcls": true,
+                          "restrictPublicBuckets": true
+                        },
+                        "tags": [
+                          {
+                            "key": "owner",
+                            "value": "toggle-inc"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                      "version": "2.25.0"
+                    }
+                  },
+                  "Policy": {
+                    "id": "Policy",
+                    "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/ArtifactsBucket/Policy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/ArtifactsBucket/Policy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::S3::BucketPolicy",
+                          "aws:cdk:cloudformation:props": {
+                            "bucket": {
+                              "Ref": "minemapappserverpipelineArtifactsBucket502134C1"
+                            },
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "s3:*",
+                                  "Condition": {
+                                    "Bool": {
+                                      "aws:SecureTransport": "false"
+                                    }
+                                  },
+                                  "Effect": "Deny",
+                                  "Principal": {
+                                    "AWS": "*"
+                                  },
+                                  "Resource": [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "minemapappserverpipelineArtifactsBucket502134C1",
+                                        "Arn"
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Fn::GetAtt": [
+                                              "minemapappserverpipelineArtifactsBucket502134C1",
+                                              "Arn"
+                                            ]
+                                          },
+                                          "/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.CfnBucketPolicy",
+                          "version": "2.25.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.BucketPolicy",
+                      "version": "2.25.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.Bucket",
+                  "version": "2.25.0"
+                }
+              },
+              "Role": {
+                "id": "Role",
+                "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Role",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Role/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "codepipeline.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "tags": [
+                          {
+                            "key": "owner",
+                            "value": "toggle-inc"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.25.0"
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Role/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Role/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "s3:Abort*",
+                                    "s3:DeleteObject*",
+                                    "s3:GetBucket*",
+                                    "s3:GetObject*",
+                                    "s3:List*",
+                                    "s3:PutObject",
+                                    "s3:PutObjectLegalHold",
+                                    "s3:PutObjectRetention",
+                                    "s3:PutObjectTagging",
+                                    "s3:PutObjectVersionTagging"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "minemapappserverpipelineArtifactsBucket502134C1",
+                                        "Arn"
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Fn::GetAtt": [
+                                              "minemapappserverpipelineArtifactsBucket502134C1",
+                                              "Arn"
+                                            ]
+                                          },
+                                          "/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Action": [
+                                    "kms:Decrypt",
+                                    "kms:DescribeKey",
+                                    "kms:Encrypt",
+                                    "kms:GenerateDataKey*",
+                                    "kms:ReEncrypt*"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::GetAtt": [
+                                      "minemapappserverpipelineArtifactsBucketEncryptionKey1AB3C43D",
+                                      "Arn"
+                                    ]
+                                  }
+                                },
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "minemapappserverpipelineBuildminemapappserverCodeBuildCodePipelineActionRole513F59B5",
+                                        "Arn"
+                                      ]
+                                    },
+                                    {
+                                      "Fn::GetAtt": [
+                                        "minemapappserverpipelineDeployminemapappserverECSDeployCodePipelineActionRole31D2C14B",
+                                        "Arn"
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "minemapappserverpipelineRoleDefaultPolicyD1267981",
+                            "roles": [
+                              {
+                                "Ref": "minemapappserverpipelineRole8FCCDE44"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                          "version": "2.25.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Policy",
+                      "version": "2.25.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.25.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CodePipeline::Pipeline",
+                  "aws:cdk:cloudformation:props": {
+                    "roleArn": {
+                      "Fn::GetAtt": [
+                        "minemapappserverpipelineRole8FCCDE44",
+                        "Arn"
+                      ]
+                    },
+                    "stages": [
+                      {
+                        "name": "Source",
+                        "actions": [
+                          {
+                            "name": "Github",
+                            "outputArtifacts": [
+                              {
+                                "name": "Source"
+                              }
+                            ],
+                            "actionTypeId": {
+                              "category": "Source",
+                              "version": "1",
+                              "owner": "ThirdParty",
+                              "provider": "GitHub"
+                            },
+                            "configuration": {
+                              "Owner": "toggle-inc",
+                              "Repo": "mine_map_app_server",
+                              "Branch": "master",
+                              "OAuthToken": "{{resolve:secretsmanager:github-secret-token:SecretString:::}}",
+                              "PollForSourceChanges": false
+                            },
+                            "runOrder": 1
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Build",
+                        "actions": [
+                          {
+                            "name": "mine-map-app-server-CodeBuild",
+                            "inputArtifacts": [
+                              {
+                                "name": "Source"
+                              }
+                            ],
+                            "outputArtifacts": [
+                              {
+                                "name": "BuildOutput"
+                              }
+                            ],
+                            "actionTypeId": {
+                              "category": "Build",
+                              "version": "1",
+                              "owner": "AWS",
+                              "provider": "CodeBuild"
+                            },
+                            "configuration": {
+                              "ProjectName": {
+                                "Ref": "minemapappserverproject5FFFA308"
+                              }
+                            },
+                            "runOrder": 1,
+                            "roleArn": {
+                              "Fn::GetAtt": [
+                                "minemapappserverpipelineBuildminemapappserverCodeBuildCodePipelineActionRole513F59B5",
+                                "Arn"
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Deploy",
+                        "actions": [
+                          {
+                            "name": "mine-map-app-server-ECSDeploy",
+                            "inputArtifacts": [
+                              {
+                                "name": "BuildOutput"
+                              }
+                            ],
+                            "actionTypeId": {
+                              "category": "Deploy",
+                              "version": "1",
+                              "owner": "AWS",
+                              "provider": "ECS"
+                            },
+                            "configuration": {
+                              "ClusterName": {
+                                "Fn::ImportValue": "mine-map-app-server-ecs-stack:ExportsOutputRefminemapappserverclusterA303E7662ADB22B1"
+                              },
+                              "ServiceName": {
+                                "Fn::ImportValue": "mine-map-app-server-ecs-stack:ExportsOutputFnGetAttminemapappserverfargateServiceEEFEA250Name6780D483"
+                              },
+                              "FileName": "docker_image_definition.json"
+                            },
+                            "runOrder": 1,
+                            "roleArn": {
+                              "Fn::GetAtt": [
+                                "minemapappserverpipelineDeployminemapappserverECSDeployCodePipelineActionRole31D2C14B",
+                                "Arn"
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "artifactStore": {
+                      "type": "S3",
+                      "location": {
+                        "Ref": "minemapappserverpipelineArtifactsBucket502134C1"
+                      },
+                      "encryptionKey": {
+                        "type": "KMS",
+                        "id": {
+                          "Fn::GetAtt": [
+                            "minemapappserverpipelineArtifactsBucketEncryptionKey1AB3C43D",
+                            "Arn"
+                          ]
+                        }
+                      }
+                    },
+                    "name": "mine-map-app-server-pipeline",
+                    "tags": [
+                      {
+                        "key": "owner",
+                        "value": "toggle-inc"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_codepipeline.CfnPipeline",
+                  "version": "2.25.0"
+                }
+              },
+              "Source": {
+                "id": "Source",
+                "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Source",
+                "children": {
+                  "Github": {
+                    "id": "Github",
+                    "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Source/Github",
+                    "children": {
+                      "WebhookResource": {
+                        "id": "WebhookResource",
+                        "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Source/Github/WebhookResource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::CodePipeline::Webhook",
+                          "aws:cdk:cloudformation:props": {
+                            "authentication": "GITHUB_HMAC",
+                            "authenticationConfiguration": {
+                              "secretToken": "{{resolve:secretsmanager:github-secret-token:SecretString:::}}"
+                            },
+                            "filters": [
+                              {
+                                "jsonPath": "$.ref",
+                                "matchEquals": "refs/heads/{Branch}"
+                              }
+                            ],
+                            "targetAction": "Github",
+                            "targetPipeline": {
+                              "Ref": "minemapappserverpipeline41DB61CA"
+                            },
+                            "targetPipelineVersion": 1,
+                            "registerWithThirdParty": true
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_codepipeline.CfnWebhook",
+                          "version": "2.25.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "constructs.Construct",
+                      "version": "10.1.25"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "constructs.Construct",
+                  "version": "10.1.25"
+                }
+              },
+              "Build": {
+                "id": "Build",
+                "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Build",
+                "children": {
+                  "mine-map-app-server-CodeBuild": {
+                    "id": "mine-map-app-server-CodeBuild",
+                    "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Build/mine-map-app-server-CodeBuild",
+                    "children": {
+                      "CodePipelineActionRole": {
+                        "id": "CodePipelineActionRole",
+                        "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Build/mine-map-app-server-CodeBuild/CodePipelineActionRole",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Build/mine-map-app-server-CodeBuild/CodePipelineActionRole/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                              "aws:cdk:cloudformation:props": {
+                                "assumeRolePolicyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "sts:AssumeRole",
+                                      "Effect": "Allow",
+                                      "Principal": {
+                                        "AWS": {
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              "arn:",
+                                              {
+                                                "Ref": "AWS::Partition"
+                                              },
+                                              ":iam::716993826013:root"
+                                            ]
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "tags": [
+                                  {
+                                    "key": "owner",
+                                    "value": "toggle-inc"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                              "version": "2.25.0"
+                            }
+                          },
+                          "DefaultPolicy": {
+                            "id": "DefaultPolicy",
+                            "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Build/mine-map-app-server-CodeBuild/CodePipelineActionRole/DefaultPolicy",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Build/mine-map-app-server-CodeBuild/CodePipelineActionRole/DefaultPolicy/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                  "aws:cdk:cloudformation:props": {
+                                    "policyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": [
+                                            "codebuild:BatchGetBuilds",
+                                            "codebuild:StartBuild",
+                                            "codebuild:StopBuild"
+                                          ],
+                                          "Effect": "Allow",
+                                          "Resource": {
+                                            "Fn::GetAtt": [
+                                              "minemapappserverproject5FFFA308",
+                                              "Arn"
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    },
+                                    "policyName": "minemapappserverpipelineBuildminemapappserverCodeBuildCodePipelineActionRoleDefaultPolicyD4A2869D",
+                                    "roles": [
+                                      {
+                                        "Ref": "minemapappserverpipelineBuildminemapappserverCodeBuildCodePipelineActionRole513F59B5"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                                  "version": "2.25.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.Policy",
+                              "version": "2.25.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Role",
+                          "version": "2.25.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "constructs.Construct",
+                      "version": "10.1.25"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "constructs.Construct",
+                  "version": "10.1.25"
+                }
+              },
+              "Deploy": {
+                "id": "Deploy",
+                "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Deploy",
+                "children": {
+                  "mine-map-app-server-ECSDeploy": {
+                    "id": "mine-map-app-server-ECSDeploy",
+                    "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Deploy/mine-map-app-server-ECSDeploy",
+                    "children": {
+                      "CodePipelineActionRole": {
+                        "id": "CodePipelineActionRole",
+                        "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Deploy/mine-map-app-server-ECSDeploy/CodePipelineActionRole",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Deploy/mine-map-app-server-ECSDeploy/CodePipelineActionRole/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                              "aws:cdk:cloudformation:props": {
+                                "assumeRolePolicyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "sts:AssumeRole",
+                                      "Effect": "Allow",
+                                      "Principal": {
+                                        "AWS": {
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              "arn:",
+                                              {
+                                                "Ref": "AWS::Partition"
+                                              },
+                                              ":iam::716993826013:root"
+                                            ]
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "tags": [
+                                  {
+                                    "key": "owner",
+                                    "value": "toggle-inc"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                              "version": "2.25.0"
+                            }
+                          },
+                          "DefaultPolicy": {
+                            "id": "DefaultPolicy",
+                            "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Deploy/mine-map-app-server-ECSDeploy/CodePipelineActionRole/DefaultPolicy",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "mine-map-app-server-pipeline-stack/mine-map-app-server-pipeline/Deploy/mine-map-app-server-ECSDeploy/CodePipelineActionRole/DefaultPolicy/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                  "aws:cdk:cloudformation:props": {
+                                    "policyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": [
+                                            "ecs:DescribeServices",
+                                            "ecs:DescribeTaskDefinition",
+                                            "ecs:DescribeTasks",
+                                            "ecs:ListTasks",
+                                            "ecs:RegisterTaskDefinition",
+                                            "ecs:UpdateService"
+                                          ],
+                                          "Effect": "Allow",
+                                          "Resource": "*"
+                                        },
+                                        {
+                                          "Action": "iam:PassRole",
+                                          "Condition": {
+                                            "StringEqualsIfExists": {
+                                              "iam:PassedToService": [
+                                                "ec2.amazonaws.com",
+                                                "ecs-tasks.amazonaws.com"
+                                              ]
+                                            }
+                                          },
+                                          "Effect": "Allow",
+                                          "Resource": "*"
+                                        },
+                                        {
+                                          "Action": [
+                                            "s3:GetBucket*",
+                                            "s3:GetObject*",
+                                            "s3:List*"
+                                          ],
+                                          "Effect": "Allow",
+                                          "Resource": [
+                                            {
+                                              "Fn::GetAtt": [
+                                                "minemapappserverpipelineArtifactsBucket502134C1",
+                                                "Arn"
+                                              ]
+                                            },
+                                            {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  {
+                                                    "Fn::GetAtt": [
+                                                      "minemapappserverpipelineArtifactsBucket502134C1",
+                                                      "Arn"
+                                                    ]
+                                                  },
+                                                  "/*"
+                                                ]
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Action": [
+                                            "kms:Decrypt",
+                                            "kms:DescribeKey"
+                                          ],
+                                          "Effect": "Allow",
+                                          "Resource": {
+                                            "Fn::GetAtt": [
+                                              "minemapappserverpipelineArtifactsBucketEncryptionKey1AB3C43D",
+                                              "Arn"
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    },
+                                    "policyName": "minemapappserverpipelineDeployminemapappserverECSDeployCodePipelineActionRoleDefaultPolicyFC7E0899",
+                                    "roles": [
+                                      {
+                                        "Ref": "minemapappserverpipelineDeployminemapappserverECSDeployCodePipelineActionRole31D2C14B"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                                  "version": "2.25.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.Policy",
+                              "version": "2.25.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Role",
+                          "version": "2.25.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "constructs.Construct",
+                      "version": "10.1.25"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "constructs.Construct",
+                  "version": "10.1.25"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_codepipeline.Pipeline",
+              "version": "2.25.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "mine-map-app-server-pipeline-stack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "mine-map-app-server-pipeline-stack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.25"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.25.0"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "aws-cdk-lib.App",
+      "version": "2.25.0"
+    }
+  }
+}

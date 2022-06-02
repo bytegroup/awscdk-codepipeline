@@ -1,0 +1,20 @@
+{
+  "version": "19.0.0",
+  "files": {
+    "95a1343b97a1acd87f29f5f6abc9cb2abcb88d11863265f98c1ef958c5fa0216": {
+      "source": {
+        "path": "mine-map-app-server-pipeline-stack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "716993826013-ap-northeast-1": {
+          "bucketName": "cdk-hnb659fds-assets-716993826013-ap-northeast-1",
+          "objectKey": "95a1343b97a1acd87f29f5f6abc9cb2abcb88d11863265f98c1ef958c5fa0216.json",
+          "region": "ap-northeast-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::716993826013:role/cdk-hnb659fds-file-publishing-role-716993826013-ap-northeast-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}
