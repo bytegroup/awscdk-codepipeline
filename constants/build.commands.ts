@@ -3,7 +3,7 @@ import {DEPLOY_IMAGE_FILE, HOST_BUCKET} from "./Constants";
 
 export class BuildCommands {
     public getBuildSpec() {
-        return BuildSpec.fromObject({
+        return BuildSpec.fromObjectToYaml({
             version: '0.2',
             /*env: {
                 shell: 'bash'
@@ -11,12 +11,12 @@ export class BuildCommands {
             phases: {
                 install: {
                     "runtime-versions": {
-                        "nodejs": 10,
-                    }
+                        "nodejs": 14,
+                    },
+                    commands: [
+                        "echo not installing anything else",
+                    ],
                 },
-                commands: [
-                    "echo not installing anything else",
-                ],
                 pre_build: {
                     commands: [
                         'echo Installing source dependencies...',
@@ -35,8 +35,8 @@ export class BuildCommands {
                 post_build: {
                     commands: [
                         'echo Build completed on `date`',
-                        'echo Push build package to bucket',
-                        'aws s3 sync out s3://'+HOST_BUCKET+'/',
+                        /*'echo Push build package to bucket',
+                        'aws s3 sync out s3://' + HOST_BUCKET + '/',*/
                     ]
                 }
             },

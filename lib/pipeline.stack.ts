@@ -47,7 +47,7 @@ export class PipelineStack extends Stack{
             /*webhookFilters: [
                 FilterGroup.inEventOf(EventAction.PUSH).andBranchIs(githubConfig.branch),
             ],*/
-        })
+        });
 
         const stack = Stack.of(this);
         const buildSpec = new BuildCommands().getBuildSpec();
@@ -56,7 +56,7 @@ export class PipelineStack extends Stack{
             buildSpec,
             source,
             environment: {
-                buildImage: LinuxBuildImage.AMAZON_LINUX_2_3,
+                buildImage: LinuxBuildImage.STANDARD_5_0,
                 privileged: true,
             },
             /*environmentVariables: {
@@ -114,9 +114,9 @@ export class PipelineStack extends Stack{
                 ),
             }),*/
             deploy: new S3DeployAction({
-                actionName: '',
+                actionName: APP+'-bucket-action',
                 bucket: new BucketDeployment(this,APP+'-bucket',{
-                    sources: [s3_deployment.Source.asset('../out')],
+                    sources: [s3_deployment.Source.asset('./out')],
                     destinationBucket: props.buildBucket,
                     distribution: props.distribution,
                 }).deployedBucket,
