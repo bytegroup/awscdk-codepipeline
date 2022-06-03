@@ -1,6 +1,6 @@
 import {SecretValue, Stack, StackProps} from "aws-cdk-lib";
 import {Construct} from "constructs";
-import {APP, githubConfig} from "../constants/Constants";
+import {APP, githubConfig, HOST_BUCKET} from "../constants/Constants";
 import {
     CodeBuildAction, EcsDeployAction,
     GitHubSourceAction,
@@ -116,11 +116,11 @@ export class PipelineStack extends Stack{
             deploy: new S3DeployAction({
                 actionName: APP+'-bucket-action',
                 bucket: new BucketDeployment(this,APP+'-bucket',{
-                    sources: [s3_deployment.Source.asset('./out')],
+                    sources: [s3_deployment.Source.asset('out')],
                     destinationBucket: props.buildBucket,
                     distribution: props.distribution,
                 }).deployedBucket,
-                input: artifacts.build,
+                input: artifacts.source,
             }),
         }
 
