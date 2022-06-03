@@ -1,6 +1,6 @@
 import {SecretValue, Stack, StackProps} from "aws-cdk-lib";
 import {Construct} from "constructs";
-import {APP, githubConfig, HOST_BUCKET} from "../constants/Constants";
+import {APP, githubConfig, HOST_BUCKET, RESOURCE_BUCKET} from "../constants/Constants";
 import {
     CodeBuildAction, EcsDeployAction,
     GitHubSourceAction,
@@ -11,9 +11,9 @@ import {
     Project,
     Source
 } from "aws-cdk-lib/aws-codebuild";
-import {Artifact, Pipeline} from "aws-cdk-lib/aws-codepipeline";
+import {Artifact, ArtifactPath, Pipeline} from "aws-cdk-lib/aws-codepipeline";
 import {BuildCommands} from "../constants/build.commands";
-import {PolicyStatement} from "aws-cdk-lib/aws-iam";
+import {ManagedPolicy, PolicyStatement} from "aws-cdk-lib/aws-iam";
 import {BucketDeployment} from "aws-cdk-lib/aws-s3-deployment";
 import * as s3_deployment from "aws-cdk-lib/aws-s3-deployment";
 import {Bucket} from "aws-cdk-lib/aws-s3";
@@ -59,24 +59,11 @@ export class PipelineStack extends Stack{
                 buildImage: LinuxBuildImage.STANDARD_5_0,
                 privileged: true,
             },
-            /*environmentVariables: {
-                REPOSITORY_URI: {
-                    value: props.repository.repositoryUri,
+            environmentVariables: {
+                RESOURCE_BUCKET: {
+                    value: RESOURCE_BUCKET,
                 },
-                AWS_ACCOUNT_ID: {
-                    value: stack.account,
-                },
-                AWS_STACK_REGION: {
-                    value: stack.region,
-                },
-                GITHUB_AUTH_TOKEN: {
-                    type: BuildEnvironmentVariableType.SECRETS_MANAGER,
-                    value: githubConfig.secreteManagerTokenArn,
-                },
-                CONTAINER_NAME: {
-                    value: props.container.containerName,
-                },
-            },*/
+            },
         });
 
         project.addToRolePolicy(
@@ -84,6 +71,9 @@ export class PipelineStack extends Stack{
                 actions: ["secretsmanager:GetSecretValue"],
                 resources: [githubConfig.secreteManagerTokenArn],
             })
+        );
+        project.role?.addManagedPolicy(
+            ManagedPolicy.fromAwsManagedPolicyName("AmazonS3ReadOnlyAccess")
         );
         //props.repository.grantPullPush(project.grantPrincipal);
 
@@ -120,10 +110,14 @@ export class PipelineStack extends Stack{
                     destinationBucket: props.buildBucket,
                     distribution: props.distribution,
                 }).deployedBucket,
-                input: artifacts.source,
+                input: new ArtifactPath(artifacts.source, 'source.zip').artifact,
             }),
+            /*deploy: new S3DeployAction({
+                actionName: APP+'-bucket-action',
+                bucket: Bucket.fromBucketName(this, 'bucketDeploy', HOST_BUCKET),
+                input: artifacts.source,
+            }),*/
         }
-
         const pipeline = new Pipeline(this, APP+"-pipeline", {
             pipelineName: APP+"-pipeline",
             stages: [
