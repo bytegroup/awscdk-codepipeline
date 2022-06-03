@@ -1,34 +1,27 @@
 import {SecretValue, Stack, StackProps} from "aws-cdk-lib";
 import {Construct} from "constructs";
-import {IRepository} from "aws-cdk-lib/aws-ecr";
-import {ContainerDefinition, IBaseService, ICluster} from "aws-cdk-lib/aws-ecs";
-import {APP, DEPLOY_IMAGE_FILE, githubConfig} from "../constants/Constants";
-import {CodePipeline, CodePipelineSource, ShellStep} from "aws-cdk-lib/pipelines";
+import {APP, githubConfig} from "../constants/Constants";
 import {
-    CodeBuildAction,
-    EcsDeployAction,
+    CodeBuildAction, EcsDeployAction,
     GitHubSourceAction,
-    GitHubTrigger
+    GitHubTrigger, S3DeployAction
 } from "aws-cdk-lib/aws-codepipeline-actions";
 import {
-    BuildEnvironmentVariableType,
-    BuildSpec,
-    EventAction,
-    FilterGroup,
-    GitHubSourceCredentials,
     LinuxBuildImage,
     Project,
     Source
 } from "aws-cdk-lib/aws-codebuild";
-import {Artifact, ArtifactPath, Pipeline} from "aws-cdk-lib/aws-codepipeline";
+import {Artifact, Pipeline} from "aws-cdk-lib/aws-codepipeline";
 import {BuildCommands} from "../constants/build.commands";
 import {PolicyStatement} from "aws-cdk-lib/aws-iam";
+import {BucketDeployment} from "aws-cdk-lib/aws-s3-deployment";
+import * as s3_deployment from "aws-cdk-lib/aws-s3-deployment";
+import {Bucket} from "aws-cdk-lib/aws-s3";
+import {Distribution} from "aws-cdk-lib/aws-cloudfront";
 
 interface Props extends StackProps {
-    repository: IRepository
-    service: IBaseService
-    cluster: ICluster
-    container: ContainerDefinition
+    buildBucket: Bucket,
+    distribution: Distribution,
 }
 
 const artifacts = {
@@ -66,7 +59,7 @@ export class PipelineStack extends Stack{
                 buildImage: LinuxBuildImage.AMAZON_LINUX_2_3,
                 privileged: true,
             },
-            environmentVariables: {
+            /*environmentVariables: {
                 REPOSITORY_URI: {
                     value: props.repository.repositoryUri,
                 },
@@ -83,7 +76,7 @@ export class PipelineStack extends Stack{
                 CONTAINER_NAME: {
                     value: props.container.containerName,
                 },
-            },
+            },*/
         });
 
         project.addToRolePolicy(
@@ -92,7 +85,7 @@ export class PipelineStack extends Stack{
                 resources: [githubConfig.secreteManagerTokenArn],
             })
         );
-        props.repository.grantPullPush(project.grantPrincipal);
+        //props.repository.grantPullPush(project.grantPrincipal);
 
         const pipelineActions = {
             source: new GitHubSourceAction({
@@ -112,13 +105,22 @@ export class PipelineStack extends Stack{
                 outputs: [artifacts.build],
             }),
 
-            deploy: new EcsDeployAction({
+            /*deploy: new EcsDeployAction({
                 actionName: APP+"-ECSDeploy",
                 service: props.service,
                 imageFile: new ArtifactPath(
                     artifacts.build,
                     DEPLOY_IMAGE_FILE,
                 ),
+            }),*/
+            deploy: new S3DeployAction({
+                actionName: '',
+                bucket: new BucketDeployment(this,APP+'-bucket',{
+                    sources: [s3_deployment.Source.asset('../out')],
+                    destinationBucket: props.buildBucket,
+                    distribution: props.distribution,
+                }).deployedBucket,
+                input: artifacts.build,
             }),
         }
 

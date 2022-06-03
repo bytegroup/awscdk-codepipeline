@@ -14,7 +14,14 @@ export const githubConfig = {
     secreteManagerTokenArn:'arn:aws:secretsmanager:ap-northeast-1:361854753178:secret:github-secret-token-ABvX7J',
 }
 
-export const APP = 'mine-map-app-server';
+export const STAGING_WEB_CONFIG = {
+    baseDomainName: 'staging.mine.toggle-pf.com',
+    hostedZoneId: 'Z0027987VXSPGRROHS3A',
+    domainName: 'map-app.staging.mine.toggle-pf.com',
+    appEnv: 'staging',
+};
+
+export const APP = 'mine-map-app-client';
 
 export const TAGS = {
     'Author': "Mizanur",
@@ -25,3 +32,4 @@ export const VPC_NAME = "toggle-staging-vpc";
 export const VPC_ID = "vpc-00f205a96f9862cb2";/*toggle-staging-vpc*/
 export const DEPLOY_IMAGE_FILE="docker_image_definition.json";
 export const RESOURCE_BUCKET = "codepipeline-resources-cdk";
+export const HOST_BUCKET = "minemap-client-host";
