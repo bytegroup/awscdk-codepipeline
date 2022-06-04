@@ -20,7 +20,7 @@ export class BuildCommands {
                 pre_build: {
                     commands: [
                         'echo copy env file to project',
-                        'aws s3 cp s3://${RESOURCE_BUCKET}/commonEnv_client.env .env',
+                        'aws s3 cp s3://${RESOURCE_BUCKET}/commonEnv_client_prod.env .env',
                         'echo Installing source dependencies...',
                         'yarn install',
                         'aws --version',
@@ -46,9 +46,9 @@ export class BuildCommands {
                     ]
                 }
             },
-            artifacts: {
+            /*artifacts: {
                 files: [DEPLOY_IMAGE_FILE]
-            },
+            },*/
         });
     }
 }
