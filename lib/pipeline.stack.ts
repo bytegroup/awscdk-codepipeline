@@ -2,6 +2,7 @@ import {SecretValue, Stack, StackProps} from "aws-cdk-lib";
 import {Construct} from "constructs";
 import {APP, githubConfig, HOST_BUCKET, RESOURCE_BUCKET} from "../constants/Constants";
 import {
+    CacheControl,
     CodeBuildAction, EcsDeployAction,
     GitHubSourceAction,
     GitHubTrigger, S3DeployAction, S3SourceAction
@@ -26,7 +27,7 @@ interface Props extends StackProps {
 
 const artifacts = {
     source: new Artifact("Source"),
-    build: new Artifact("BuildOutput"),
+    build: new Artifact("Build"),
 }
 
 export class PipelineStack extends Stack{
@@ -62,6 +63,9 @@ export class PipelineStack extends Stack{
             environmentVariables: {
                 RESOURCE_BUCKET: {
                     value: RESOURCE_BUCKET,
+                },
+                HOST_BUCKET: {
+                    value: HOST_BUCKET,
                 },
             },
         });
@@ -105,19 +109,23 @@ export class PipelineStack extends Stack{
             }),*/
             deploy: new S3DeployAction({
                 actionName: APP+'-bucket-action',
-                bucket: new BucketDeployment(this,APP+'-bucket',{
+                /*bucket: new BucketDeployment(this,APP+'-bucket',{
                     sources: [
                         s3_deployment.Source.asset('out'),
-                        /*s3_deployment.Source.bucket(
-                            Bucket.fromBucketName(this, "host-bucket", HOST_BUCKET),
-                            APP+"-build-package.zip"),*/
+                        /!*s3_deployment.Source.bucket(
+                            Bucket.fromBucketName(this, "host-bucket", artifacts.build.s3Location.bucketName),
+                            artifacts.build.s3Location.objectKey),*!/
                     ],
                     destinationBucket: props.buildBucket,
                     distribution: props.distribution,
-                }).deployedBucket,
+                }).deployedBucket,*/
+                bucket: Bucket.fromBucketName(this, APP+'-host-bucket', HOST_BUCKET),
                 input: artifacts.build,
+                //extract: false,
+                //cacheControl:[CacheControl.noCache()]
             }),
         }
+        //props.distribution.addBehavior('')
         const pipeline = new Pipeline(this, APP+"-pipeline", {
             pipelineName: APP+"-pipeline",
             stages: [
