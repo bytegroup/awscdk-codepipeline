@@ -46,9 +46,9 @@ export class BuildCommands {
                     ]
                 }
             },
-            artifacts: {
+            /*artifacts: {
                 files: [DEPLOY_IMAGE_FILE]
-            },
+            },*/
         });
     }
 }
