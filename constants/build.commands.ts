@@ -1,5 +1,5 @@
 import {BuildSpec} from "aws-cdk-lib/aws-codebuild";
-import {DEPLOY_IMAGE_FILE, HOST_BUCKET} from "./Constants";
+import {APP, DEPLOY_IMAGE_FILE, HOST_BUCKET} from "./Constants";
 
 export class BuildCommands {
     public getBuildSpec() {
@@ -39,14 +39,16 @@ export class BuildCommands {
                         'echo Build completed on `date`',
                         'echo removing .env file',
                         'rm -fr .env',
-                        /*'echo Push build package to bucket',
-                        'aws s3 sync out s3://' + HOST_BUCKET + '/',*/
+                        'echo Push build package to bucket',
+                        //'zip -r '+APP+'-build-package.zip out',
+                        'aws s3 sync ${CODEBUILD_SRC_DIR}/out s3://' + HOST_BUCKET + '/',
+                        //'aws s3 cp ${CODEBUILD_SRC_DIR}/'+APP+'-build-package.zip s3://' + HOST_BUCKET + '/',
                     ]
                 }
             },
-            /*artifacts: {
+            artifacts: {
                 files: [DEPLOY_IMAGE_FILE]
-            },*/
+            },
         });
     }
 }

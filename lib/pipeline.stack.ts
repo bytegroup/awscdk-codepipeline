@@ -4,7 +4,7 @@ import {APP, githubConfig, HOST_BUCKET, RESOURCE_BUCKET} from "../constants/Cons
 import {
     CodeBuildAction, EcsDeployAction,
     GitHubSourceAction,
-    GitHubTrigger, S3DeployAction
+    GitHubTrigger, S3DeployAction, S3SourceAction
 } from "aws-cdk-lib/aws-codepipeline-actions";
 import {
     LinuxBuildImage,
@@ -73,7 +73,7 @@ export class PipelineStack extends Stack{
             })
         );
         project.role?.addManagedPolicy(
-            ManagedPolicy.fromAwsManagedPolicyName("AmazonS3ReadOnlyAccess")
+            ManagedPolicy.fromAwsManagedPolicyName("AmazonS3FullAccess")
         );
         //props.repository.grantPullPush(project.grantPrincipal);
 
@@ -106,17 +106,17 @@ export class PipelineStack extends Stack{
             deploy: new S3DeployAction({
                 actionName: APP+'-bucket-action',
                 bucket: new BucketDeployment(this,APP+'-bucket',{
-                    sources: [s3_deployment.Source.asset('out')],
+                    sources: [
+                        s3_deployment.Source.asset('out'),
+                        /*s3_deployment.Source.bucket(
+                            Bucket.fromBucketName(this, "host-bucket", HOST_BUCKET),
+                            APP+"-build-package.zip"),*/
+                    ],
                     destinationBucket: props.buildBucket,
                     distribution: props.distribution,
                 }).deployedBucket,
-                input: new ArtifactPath(artifacts.source, 'source.zip').artifact,
+                input: artifacts.build,
             }),
-            /*deploy: new S3DeployAction({
-                actionName: APP+'-bucket-action',
-                bucket: Bucket.fromBucketName(this, 'bucketDeploy', HOST_BUCKET),
-                input: artifacts.source,
-            }),*/
         }
         const pipeline = new Pipeline(this, APP+"-pipeline", {
             pipelineName: APP+"-pipeline",
@@ -125,24 +125,6 @@ export class PipelineStack extends Stack{
                 { stageName: "Build", actions: [pipelineActions.build] },
                 { stageName: "Deploy", actions: [pipelineActions.deploy] },
             ],
-        })
-
-        /*const pipeline = new CodePipeline(this, pipelineName, {
-            pipelineName,
-            crossAccountKeys: true,
-
-            synth: new ShellStep('Synth', {
-                input: CodePipelineSource.gitHub(
-                    githubConfig.owner+'/'+githubConfig.repo,
-                    githubConfig.branch,
-                    {
-                        authentication:SecretValue.secretsManager(githubConfig.secreteManagerTokenName),
-                    //trigger:GitHubTrigger.WEBHOOK
-                    }),
-                commands:[
-
-                ]
-            }),
-        });*/
+        });
     }
 }

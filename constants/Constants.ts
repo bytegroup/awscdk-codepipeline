@@ -27,6 +27,6 @@ export const TAGS = {
     'Author': "Mizanur",
 }
 
-export const DEPLOY_IMAGE_FILE="docker_image_definition.json";
+export const DEPLOY_IMAGE_FILE="deploy_bundle.json";
 export const HOST_BUCKET = "minemap-client-host";
 export const RESOURCE_BUCKET = "codepipeline-resources-cdk";
