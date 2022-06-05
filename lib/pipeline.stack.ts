@@ -1,22 +1,11 @@
 import {SecretValue, Stack, StackProps} from "aws-cdk-lib";
 import {Construct} from "constructs";
 import {APP, githubConfig, HOST_BUCKET, RESOURCE_BUCKET} from "../constants/Constants";
-import {
-    CacheControl,
-    CodeBuildAction, EcsDeployAction,
-    GitHubSourceAction,
-    GitHubTrigger, S3DeployAction, S3SourceAction
-} from "aws-cdk-lib/aws-codepipeline-actions";
-import {
-    LinuxBuildImage,
-    Project,
-    Source
-} from "aws-cdk-lib/aws-codebuild";
-import {Artifact, ArtifactPath, Pipeline} from "aws-cdk-lib/aws-codepipeline";
+import {CodeBuildAction, GitHubSourceAction, GitHubTrigger, S3DeployAction} from "aws-cdk-lib/aws-codepipeline-actions";
+import {LinuxBuildImage, Project, Source} from "aws-cdk-lib/aws-codebuild";
+import {Artifact, Pipeline} from "aws-cdk-lib/aws-codepipeline";
 import {BuildCommands} from "../constants/build.commands";
-import {ManagedPolicy, PolicyStatement} from "aws-cdk-lib/aws-iam";
-import {BucketDeployment} from "aws-cdk-lib/aws-s3-deployment";
-import * as s3_deployment from "aws-cdk-lib/aws-s3-deployment";
+import {Effect, ManagedPolicy, PolicyStatement} from "aws-cdk-lib/aws-iam";
 import {Bucket} from "aws-cdk-lib/aws-s3";
 import {Distribution} from "aws-cdk-lib/aws-cloudfront";
 
@@ -67,6 +56,9 @@ export class PipelineStack extends Stack{
                 HOST_BUCKET: {
                     value: HOST_BUCKET,
                 },
+                DISTRIBUTION_ID: {
+                    value: props.distribution.distributionId,
+                },
             },
         });
 
@@ -79,7 +71,11 @@ export class PipelineStack extends Stack{
         project.role?.addManagedPolicy(
             ManagedPolicy.fromAwsManagedPolicyName("AmazonS3FullAccess")
         );
-        //props.repository.grantPullPush(project.grantPrincipal);
+        project.addToRolePolicy(new PolicyStatement({
+            actions: ["cloudfront:CreateInvalidation"],
+            effect: Effect.ALLOW,
+            resources:["*"]
+        }));
 
         const pipelineActions = {
             source: new GitHubSourceAction({
@@ -98,15 +94,6 @@ export class PipelineStack extends Stack{
                 input: artifacts.source,
                 outputs: [artifacts.build],
             }),
-
-            /*deploy: new EcsDeployAction({
-                actionName: APP+"-ECSDeploy",
-                service: props.service,
-                imageFile: new ArtifactPath(
-                    artifacts.build,
-                    DEPLOY_IMAGE_FILE,
-                ),
-            }),*/
             deploy: new S3DeployAction({
                 actionName: APP+'-bucket-action',
                 /*bucket: new BucketDeployment(this,APP+'-bucket',{
@@ -125,7 +112,6 @@ export class PipelineStack extends Stack{
                 //cacheControl:[CacheControl.noCache()]
             }),
         }
-        //props.distribution.addBehavior('')
         const pipeline = new Pipeline(this, APP+"-pipeline", {
             pipelineName: APP+"-pipeline",
             stages: [

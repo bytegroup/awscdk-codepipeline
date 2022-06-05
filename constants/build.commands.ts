@@ -39,12 +39,12 @@ export class BuildCommands {
                         'echo Build completed on `date`',
                         'echo removing .env file',
                         'rm -fr .env',
+                        'echo invalidating old code in cloudfront distribution',
+                        'aws cloudfront create-invalidation --distribution-id ${DISTRIBUTION_ID} --paths "/*"',
                         'echo removing all from bucket',
                         'aws s3 rm s3://${HOST_BUCKET} --recursive',
                         //'echo Push build package to bucket',
-                        //'zip -r '+APP+'-build-package.zip out',
                         //'aws s3 sync ${CODEBUILD_SRC_DIR}/out s3://${HOST_BUCKET}/',
-                        //'aws s3 cp ${CODEBUILD_SRC_DIR}/'+APP+'-build-package.zip s3://${HOST_BUCKET}/',
                     ]
                 }
             },

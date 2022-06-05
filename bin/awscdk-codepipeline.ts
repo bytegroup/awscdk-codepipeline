@@ -21,7 +21,7 @@ new PipelineStack(app, APP+'-pipeline-stack', {
 });
 
 Tags.of(app).add("owner", githubConfig.owner);
-
+app.synth();
 /*start().catch(error => {
     console.log(error)
     process.exit(1)
