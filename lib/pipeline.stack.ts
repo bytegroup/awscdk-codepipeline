@@ -1,21 +1,11 @@
 import {SecretValue, Stack, StackProps} from "aws-cdk-lib";
 import {Construct} from "constructs";
 import {APP, githubConfig, HOST_BUCKET, RESOURCE_BUCKET} from "../constants/Constants";
-import {
-    CodeBuildAction, EcsDeployAction,
-    GitHubSourceAction,
-    GitHubTrigger, S3DeployAction, S3SourceAction
-} from "aws-cdk-lib/aws-codepipeline-actions";
-import {
-    LinuxBuildImage,
-    Project,
-    Source
-} from "aws-cdk-lib/aws-codebuild";
-import {Artifact, ArtifactPath, Pipeline} from "aws-cdk-lib/aws-codepipeline";
+import {CodeBuildAction, GitHubSourceAction, GitHubTrigger, S3DeployAction} from "aws-cdk-lib/aws-codepipeline-actions";
+import {LinuxBuildImage, Project, Source} from "aws-cdk-lib/aws-codebuild";
+import {Artifact, Pipeline} from "aws-cdk-lib/aws-codepipeline";
 import {BuildCommands} from "../constants/build.commands";
-import {ManagedPolicy, PolicyStatement} from "aws-cdk-lib/aws-iam";
-import {BucketDeployment} from "aws-cdk-lib/aws-s3-deployment";
-import * as s3_deployment from "aws-cdk-lib/aws-s3-deployment";
+import {Effect, ManagedPolicy, PolicyStatement} from "aws-cdk-lib/aws-iam";
 import {Bucket} from "aws-cdk-lib/aws-s3";
 import {Distribution} from "aws-cdk-lib/aws-cloudfront";
 
@@ -26,7 +16,7 @@ interface Props extends StackProps {
 
 const artifacts = {
     source: new Artifact("Source"),
-    build: new Artifact("BuildOutput"),
+    build: new Artifact("Build"),
 }
 
 export class PipelineStack extends Stack{
@@ -63,6 +53,12 @@ export class PipelineStack extends Stack{
                 RESOURCE_BUCKET: {
                     value: RESOURCE_BUCKET,
                 },
+                HOST_BUCKET: {
+                    value: HOST_BUCKET,
+                },
+                DISTRIBUTION_ID: {
+                    value: props.distribution.distributionId,
+                },
             },
         });
 
@@ -75,7 +71,11 @@ export class PipelineStack extends Stack{
         project.role?.addManagedPolicy(
             ManagedPolicy.fromAwsManagedPolicyName("AmazonS3FullAccess")
         );
-        //props.repository.grantPullPush(project.grantPrincipal);
+        project.addToRolePolicy(new PolicyStatement({
+            actions: ["cloudfront:CreateInvalidation"],
+            effect: Effect.ALLOW,
+            resources:["*"]
+        }));
 
         const pipelineActions = {
             source: new GitHubSourceAction({
@@ -94,28 +94,22 @@ export class PipelineStack extends Stack{
                 input: artifacts.source,
                 outputs: [artifacts.build],
             }),
-
-            /*deploy: new EcsDeployAction({
-                actionName: APP+"-ECSDeploy",
-                service: props.service,
-                imageFile: new ArtifactPath(
-                    artifacts.build,
-                    DEPLOY_IMAGE_FILE,
-                ),
-            }),*/
             deploy: new S3DeployAction({
                 actionName: APP+'-bucket-action',
-                bucket: new BucketDeployment(this,APP+'-bucket',{
+                /*bucket: new BucketDeployment(this,APP+'-bucket',{
                     sources: [
                         s3_deployment.Source.asset('out'),
-                        /*s3_deployment.Source.bucket(
-                            Bucket.fromBucketName(this, "host-bucket", HOST_BUCKET),
-                            APP+"-build-package.zip"),*/
+                        /!*s3_deployment.Source.bucket(
+                            Bucket.fromBucketName(this, "host-bucket", artifacts.build.s3Location.bucketName),
+                            artifacts.build.s3Location.objectKey),*!/
                     ],
                     destinationBucket: props.buildBucket,
                     distribution: props.distribution,
-                }).deployedBucket,
+                }).deployedBucket,*/
+                bucket: Bucket.fromBucketName(this, APP+'-host-bucket', HOST_BUCKET),
                 input: artifacts.build,
+                //extract: false,
+                //cacheControl:[CacheControl.noCache()]
             }),
         }
         const pipeline = new Pipeline(this, APP+"-pipeline", {

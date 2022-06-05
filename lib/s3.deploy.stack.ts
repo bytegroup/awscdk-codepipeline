@@ -3,7 +3,6 @@ import {Construct} from "constructs";
 import {ARecord, HostedZone, RecordTarget} from "aws-cdk-lib/aws-route53";
 import {APP, HOST_BUCKET} from "../constants/Constants";
 import {DnsValidatedCertificate} from "aws-cdk-lib/aws-certificatemanager";
-import {posix} from "path";
 import {Bucket} from "aws-cdk-lib/aws-s3";
 import {Distribution, ViewerProtocolPolicy} from "aws-cdk-lib/aws-cloudfront";
 import {S3Origin} from "aws-cdk-lib/aws-cloudfront-origins";
