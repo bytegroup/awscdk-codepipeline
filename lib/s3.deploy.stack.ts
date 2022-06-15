@@ -38,13 +38,13 @@ export class S3DeployStack extends Stack{
             region: 'us-east-1',
         });
 
-        this.buildBucket = new Bucket(this, "BuildBucket",{
+        this.buildBucket = new Bucket(this, APP+"-BuildBucket",{
             removalPolicy: RemovalPolicy.DESTROY,
             autoDeleteObjects: true,
-            bucketName: HOST_BUCKET,
+            bucketName: HOST_BUCKET+'-'+props.webConfig.appEnv,
         });
 
-        this.distribution = new Distribution(this, "Distribution", {
+        this.distribution = new Distribution(this, APP+"-Distribution", {
             defaultBehavior: {
                 origin: new S3Origin(this.buildBucket),
                 viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,

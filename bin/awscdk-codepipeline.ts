@@ -1,23 +1,43 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import {APP, AWS_ENV, githubConfig, STAGING_WEB_CONFIG} from "../constants/Constants";
+import {
+    APP,
+    AWS_ENV_PROD,
+    AWS_ENV_STG,
+    githubConfig,
+    PROD_WEB_CONFIG,
+    STAGING_WEB_CONFIG
+} from "../constants/Constants";
 import {PipelineStack} from "../lib/pipeline.stack";
 import {Tags} from "aws-cdk-lib";
 import {S3DeployStack} from "../lib/s3.deploy.stack";
 
 const app = new cdk.App();
 
-const webConfigStack = new S3DeployStack(app, APP+'-web-stack', {
-    env: AWS_ENV,
+const webConfigStack = new S3DeployStack(app, APP+'-web-stack-stg', {
+    env: AWS_ENV_STG,
     stackName: APP+'-web-stack',
     webConfig: STAGING_WEB_CONFIG,
 });
+const webConfigStackProd = new S3DeployStack(app, APP+'-web-stack-prd', {
+    env: AWS_ENV_PROD,
+    stackName: APP+'-web-stack',
+    webConfig: PROD_WEB_CONFIG,
+});
 
 new PipelineStack(app, APP+'-pipeline-stack', {
-    env: AWS_ENV,
-    distribution: webConfigStack.distribution,
-    buildBucket: webConfigStack.buildBucket,
+    env: AWS_ENV_STG,
+    webSpecs: {
+        prod: {
+            distribution: webConfigStackProd.distribution,
+            buildBucket: webConfigStackProd.buildBucket,
+        },
+        stg: {
+            distribution: webConfigStack.distribution,
+            buildBucket: webConfigStack.buildBucket,
+        }
+    },
 });
 
 Tags.of(app).add("owner", githubConfig.owner);

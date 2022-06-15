@@ -10,8 +10,16 @@ import {Bucket} from "aws-cdk-lib/aws-s3";
 import {Distribution} from "aws-cdk-lib/aws-cloudfront";
 
 interface Props extends StackProps {
-    buildBucket: Bucket,
-    distribution: Distribution,
+    webSpecs: {
+        prod: {
+            buildBucket: Bucket,
+            distribution: Distribution,
+        },
+        stg: {
+            buildBucket: Bucket,
+            distribution: Distribution,
+        },
+    }
 }
 
 const artifacts = {
@@ -57,7 +65,7 @@ export class PipelineStack extends Stack{
                     value: HOST_BUCKET,
                 },
                 DISTRIBUTION_ID: {
-                    value: props.distribution.distributionId,
+                    value: props.webSpecs.stg.distribution.distributionId,
                 },
             },
         });
@@ -106,7 +114,7 @@ export class PipelineStack extends Stack{
                     destinationBucket: props.buildBucket,
                     distribution: props.distribution,
                 }).deployedBucket,*/
-                bucket: Bucket.fromBucketName(this, APP+'-host-bucket', HOST_BUCKET),
+                bucket: props.webSpecs.stg.buildBucket,
                 input: artifacts.build,
                 //extract: false,
                 //cacheControl:[CacheControl.noCache()]
