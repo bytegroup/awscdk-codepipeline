@@ -31,7 +31,7 @@ export class BuildCommands {
                         'echo Build started on `date`',
                         'echo Compiling the mine map app client code',
                         'yarn lint',
-                        'yarn build',
+                        'yarn export',
                     ],
                 },
                 post_build: {
