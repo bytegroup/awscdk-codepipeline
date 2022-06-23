@@ -12,10 +12,11 @@ import {
 import {PipelineStack} from "../lib/pipeline.stack";
 import {Tags} from "aws-cdk-lib";
 import {S3DeployStack} from "../lib/s3.deploy.stack";
+import {SsmAction} from "aws-cdk-lib/aws-cloudwatch-actions";
 
 const app = new cdk.App();
 
-const webConfigStack = new S3DeployStack(app, APP+'-web-stack-stg', {
+const webConfigStackStg = new S3DeployStack(app, APP+'-web-stack-stg', {
     env: AWS_ENV_STG,
     stackName: APP+'-web-stack',
     webConfig: STAGING_WEB_CONFIG,
@@ -25,21 +26,28 @@ const webConfigStackProd = new S3DeployStack(app, APP+'-web-stack-prd', {
     stackName: APP+'-web-stack',
     webConfig: PROD_WEB_CONFIG,
 });
+const prodDistId = webConfigStackProd.distribution.distributionId;
+const prodBuildBkt = webConfigStackProd.buildBucket.bucketArn;
+webConfigStackStg.addDependency(webConfigStackProd);
+//webConfigStackStg.exportValue(webConfigStackProd.distribution.distributionId, {name:APP+'-web-dist-'+PROD_WEB_CONFIG.appEnv});
+//webConfigStackStg.exportValue(webConfigStackProd.buildBucket.bucketArn, {name:APP+'-web-bkt-'+PROD_WEB_CONFIG.appEnv});
 
-new PipelineStack(app, APP+'-pipeline-stack', {
+const prodDistTest = cdk.Fn.importValue(APP+'-web-dist-'+PROD_WEB_CONFIG.appEnv);
+const prodBktTest = cdk.Fn.importValue(APP+'-web-bkt-'+PROD_WEB_CONFIG.appEnv);
+
+const pipeline = new PipelineStack(app, APP+'-pipeline-stack', webConfigStackProd.buildBucketArn, webConfigStackProd.distributionId, {
     env: AWS_ENV_STG,
     webSpecs: {
         prod: {
-            distribution: webConfigStackProd.distribution,
-            buildBucket: webConfigStackProd.buildBucket,
+            env: PROD_WEB_CONFIG,
         },
         stg: {
-            distribution: webConfigStack.distribution,
-            buildBucket: webConfigStack.buildBucket,
+
         }
     },
 });
-
+pipeline.addDependency(webConfigStackProd);
+pipeline.addDependency(webConfigStackStg);
 Tags.of(app).add("owner", githubConfig.owner);
 app.synth();
 /*start().catch(error => {

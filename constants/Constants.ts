@@ -23,6 +23,7 @@ export const STAGING_WEB_CONFIG = {
     hostedZoneId: 'Z0027987VXSPGRROHS3A',
     domainName: 'map-tmp.staging.mine.toggle-pf.com',
     appEnv: 'staging',
+    host_bucket: 'minemap-client-host-stg-tmp',
 };
 
 export const PROD_WEB_CONFIG = {
@@ -30,6 +31,7 @@ export const PROD_WEB_CONFIG = {
     hostedZoneId: 'Z0059839IPFJ7TFOFCQH',
     domainName: 'map-tmp.mine.toggle-pf.com',
     appEnv: 'production',
+    host_bucket: 'minemap-client-host-prod-tmp',
 };
 
 export const APP = 'mine-map-client-tmp';
@@ -39,7 +41,6 @@ export const TAGS = {
 }
 
 export const DEPLOY_IMAGE_FILE="deploy_bundle_tmp.json";
-export const HOST_BUCKET = "minemap-client-host-tmp";
 export const RESOURCE_BUCKET = "codepipeline-resources-cdk";
-export const PROD_ENV_FILE= "env_prod_variable_client.env";
-export const STG_ENV_FILE= "env_stg_variable_client.env";
+export const PROD_ENV_FILE= "env_prod_variable_client";
+export const STG_ENV_FILE= "env_stg_variable_client"; // file name without extension, and keep the file in storage with .env extension.
