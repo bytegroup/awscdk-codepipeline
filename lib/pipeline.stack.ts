@@ -1,6 +1,6 @@
-import {SecretValue, Stack, StackProps} from "aws-cdk-lib";
+import {Environment, SecretValue, Stack, StackProps} from "aws-cdk-lib";
 import {Construct} from "constructs";
-import {APP, githubConfig, PROD_ENV_FILE, RESOURCE_BUCKET, STG_ENV_FILE} from "../constants/Constants";
+import {APP, AWS_ENV_PROD, githubConfig, PROD_ENV_FILE, RESOURCE_BUCKET, STG_ENV_FILE} from "../constants/Constants";
 import {
     Action,
     CodeBuildAction,
@@ -15,22 +15,22 @@ import {BuildCommands} from "../constants/build.commands";
 import {Distribution, IDistribution} from "aws-cdk-lib/aws-cloudfront";
 import {BuildProject} from "./build.project";
 import {Bucket, IBucket} from "aws-cdk-lib/aws-s3";
+import {AppDeployStage} from "./app.deploy.stage";
 
 interface Props extends StackProps {
     webStageEnv: {
         prod: {
-            env: {
-                account: string;
-                region: string;
-            }
+            env: Environment;
+            distribution?: Distribution;
+            buildBucket?: Bucket;
         }
         stg: {
-            env: {
-                account: string;
-                region: string;
-            }
+            env: Environment;
+            distribution: Distribution;
+            buildBucket: Bucket;
         },
     }
+
 }
 
 const artifacts = {
@@ -40,12 +40,12 @@ const artifacts = {
 }
 
 export class PipelineStack extends Stack{
-    private readonly hostBucketStg:IBucket;
+/*    private readonly hostBucketStg:IBucket;
     private readonly hostBucketProd:IBucket;
     private readonly distributionStg:IDistribution;
-    private readonly distributionProd:IDistribution;
+    private readonly distributionProd:IDistribution;*/
 
-    constructor(scope:Construct, id:string, prodBktArn: string, prodDistId: string, private readonly props: Props) {
+    constructor(scope:Construct, id:string, private readonly props: Props) {
         super(scope, id, props);
         if (!props) {
             throw new Error('props required');
@@ -82,14 +82,14 @@ export class PipelineStack extends Stack{
                     value: STG_ENV_FILE,
                 },
                 HOST_BUCKET: {
-                    value: this.hostBucketStg.bucketName,
+                    value: props.webStageEnv.stg.buildBucket.bucketName,
                 },
                 DISTRIBUTION_ID: {
-                    value: this.distributionStg.distributionId,
+                    value: props.webStageEnv.stg.distribution.distributionId,
                 },
             },
         });
-        const project_prod = new BuildProject(this, APP+"-prod-project", {
+        /*const project_prod = new BuildProject(this, APP+"-prod-project", {
             projectName: APP+"-prod-project",
             buildSpec,
             environmentVariables: {
@@ -106,7 +106,7 @@ export class PipelineStack extends Stack{
                     value: this.distributionProd.distributionId,
                 },
             },
-        });
+        });*/
 
         const pipelineActions = {
             source: new GitHubSourceAction({
@@ -127,7 +127,7 @@ export class PipelineStack extends Stack{
             }),
             deploy: new S3DeployAction({
                 actionName: APP+'-staging-deploy',
-                bucket: this.hostBucketStg,
+                bucket: props.webStageEnv.stg.buildBucket,
                 input: artifacts.build_stg,
                 //extract: false,
                 //cacheControl:[CacheControl.noCache()]
@@ -136,7 +136,7 @@ export class PipelineStack extends Stack{
                 actionName: "DeployToProduction",
                 runOrder: 1,
             }),
-            prod_build: new CodeBuildAction({
+            /*prod_build: new CodeBuildAction({
                 actionName: APP+"-prod-build",
                 project: project_prod,
                 input: artifacts.source,
@@ -148,7 +148,7 @@ export class PipelineStack extends Stack{
                 input: artifacts.build_prod,
                 bucket: this.hostBucketProd,
                 runOrder: 3,
-            }),
+            }),*/
         }
         const pipeline = new Pipeline(this, APP+"-pipeline", {
             crossAccountKeys: true,
@@ -160,20 +160,26 @@ export class PipelineStack extends Stack{
                 {
                     stageName: "Deploy-Production", actions: [
                         pipelineActions.approve,
-                        pipelineActions.prod_build,
-                        pipelineActions.prod_deploy,
+                        //pipelineActions.prod_build,
+                        //pipelineActions.prod_deploy,
                     ]
                 },
             ],
         });
 
-        project_prod._enableCrossEnvironment();
-
         pipeline.addStage({
-            stageName: 'test',
-            actions: [
+            stageName: "test",
+            actions:[],
+        })
 
-            ],
-        });
+        const _this = this;
+
+
+
+        pipeline.addStage(new AppDeployStage(_this, APP+'-prod-deployment', {
+            artifacts: artifacts,
+            buildSpec: buildSpec,
+            env: props.webStageEnv.prod.env,
+        }));
     }
 }

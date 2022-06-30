@@ -28,21 +28,23 @@ const webConfigStackProd = new S3DeployStack(app, APP+'-web-stack-prd', {
 });
 const prodDistId = webConfigStackProd.distribution.distributionId;
 const prodBuildBkt = webConfigStackProd.buildBucket.bucketArn;
-webConfigStackStg.addDependency(webConfigStackProd);
+//webConfigStackStg.addDependency(webConfigStackProd);
 //webConfigStackStg.exportValue(webConfigStackProd.distribution.distributionId, {name:APP+'-web-dist-'+PROD_WEB_CONFIG.appEnv});
 //webConfigStackStg.exportValue(webConfigStackProd.buildBucket.bucketArn, {name:APP+'-web-bkt-'+PROD_WEB_CONFIG.appEnv});
 
-const prodDistTest = cdk.Fn.importValue(APP+'-web-dist-'+PROD_WEB_CONFIG.appEnv);
-const prodBktTest = cdk.Fn.importValue(APP+'-web-bkt-'+PROD_WEB_CONFIG.appEnv);
+//const prodDistTest = cdk.Fn.importValue(APP+'-web-dist-'+PROD_WEB_CONFIG.appEnv);
+//const prodBktTest = cdk.Fn.importValue(APP+'-web-bkt-'+PROD_WEB_CONFIG.appEnv);
 
-const pipeline = new PipelineStack(app, APP+'-pipeline-stack', webConfigStackProd.buildBucketArn, webConfigStackProd.distributionId, {
+const pipeline = new PipelineStack(app, APP+'-pipeline-stack', {
     env: AWS_ENV_STG,
-    webSpecs: {
+    webStageEnv: {
         prod: {
-            env: PROD_WEB_CONFIG,
+            env: AWS_ENV_PROD,
         },
         stg: {
-
+            env: AWS_ENV_STG,
+            buildBucket: webConfigStackStg.buildBucket,
+            distribution: webConfigStackStg.distribution,
         }
     },
 });
