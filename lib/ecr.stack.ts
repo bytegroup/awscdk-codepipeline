@@ -1,7 +1,7 @@
 import {RemovalPolicy, Stack, StackProps} from "aws-cdk-lib";
 import {IRepository, Repository} from "aws-cdk-lib/aws-ecr";
 import {Construct} from "constructs";
-import {APP} from "../constants/Constants";
+import {APP, REPOSITORY_NAME} from "../constants/Constants";
 
 export class EcrStack extends Stack {
     public readonly repository: IRepository;
@@ -11,7 +11,7 @@ export class EcrStack extends Stack {
         this.repository = new Repository(this, APP, {
             imageScanOnPush: false,
             removalPolicy: RemovalPolicy.DESTROY,
-            repositoryName:APP,
+            repositoryName:REPOSITORY_NAME,
         });
     }
 }

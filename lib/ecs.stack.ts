@@ -12,7 +12,7 @@ import {
     FargateTaskDefinition, LogDrivers,
     OperatingSystemFamily
 } from "aws-cdk-lib/aws-ecs";
-import {APP, CONTAINER_PORT, RESOURCE_BUCKET, VPC_NAME} from "../constants/Constants";
+import {APP, CONTAINER_PORT, ENV_VARIABLE_FILE, RESOURCE_BUCKET, VPC_NAME} from "../constants/Constants";
 import {
     ApplicationLoadBalancer,
     ApplicationProtocol,
@@ -100,10 +100,10 @@ export class ElasticContainerStack extends Stack {
             image: EcrImage.fromEcrRepository(props.repository),
             containerName: APP+'-container',
             logging: LogDrivers.awsLogs({
-                streamPrefix: 'ECS/minemapapp-stg-server',
+                streamPrefix: 'ECS/minemapapp-pre-stg-server',
             }),
             environmentFiles:[
-                EnvironmentFile.fromBucket(Bucket.fromBucketName(this, APP+'-bucket', RESOURCE_BUCKET),'commonEnv.env'),
+                EnvironmentFile.fromBucket(Bucket.fromBucketName(this, APP+'-bucket', RESOURCE_BUCKET),ENV_VARIABLE_FILE),
                 //EnvironmentFile.fromBucket(Bucket.fromBucketArn(this, 'test', 'arn:aws:s3:::codepipeline-resources-cdk/commonEnv.env'),'commonEnv.env'),
             ],
         });
