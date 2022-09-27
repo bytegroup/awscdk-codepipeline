@@ -8,7 +8,7 @@ import {
     CodeBuildAction,
     EcsDeployAction,
     GitHubSourceAction,
-    GitHubTrigger
+    GitHubTrigger, ManualApprovalAction
 } from "aws-cdk-lib/aws-codepipeline-actions";
 import {
     BuildEnvironmentVariableType,
@@ -27,6 +27,7 @@ import {PolicyStatement} from "aws-cdk-lib/aws-iam";
 interface Props extends StackProps {
     repository: IRepository
     service: IBaseService
+    service_prod: IBaseService
     cluster: ICluster
     container: ContainerDefinition
 }
@@ -120,6 +121,17 @@ export class PipelineStack extends Stack{
                     DEPLOY_IMAGE_FILE,
                 ),
             }),
+            approval: new ManualApprovalAction({
+                actionName: "Approve",
+            }),
+            deploy_prod: new EcsDeployAction({
+                actionName: APP+"-ECSDeployProd",
+                service: props.service,
+                imageFile: new ArtifactPath(
+                    artifacts.build,
+                    DEPLOY_IMAGE_FILE,
+                ),
+            }),
         }
 
         const pipeline = new Pipeline(this, APP+"-pipeline", {
@@ -127,26 +139,10 @@ export class PipelineStack extends Stack{
             stages: [
                 { stageName: "Source", actions: [pipelineActions.source] },
                 { stageName: "Build", actions: [pipelineActions.build] },
-                { stageName: "Deploy", actions: [pipelineActions.deploy] },
+                { stageName: "Staging-Deploy", actions: [pipelineActions.deploy] },
+                { stageName: "Prod-Approval", actions: [pipelineActions.approval] },
+                { stageName: "Prod-Deploy", actions: [pipelineActions.deploy_prod] },
             ],
-        })
-
-        /*const pipeline = new CodePipeline(this, pipelineName, {
-            pipelineName,
-            crossAccountKeys: true,
-
-            synth: new ShellStep('Synth', {
-                input: CodePipelineSource.gitHub(
-                    githubConfig.owner+'/'+githubConfig.repo,
-                    githubConfig.branch,
-                    {
-                        authentication:SecretValue.secretsManager(githubConfig.secreteManagerTokenName),
-                    //trigger:GitHubTrigger.WEBHOOK
-                    }),
-                commands:[
-
-                ]
-            }),
-        });*/
+        });
     }
 }

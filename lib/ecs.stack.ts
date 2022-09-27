@@ -100,7 +100,7 @@ export class ElasticContainerStack extends Stack {
             image: EcrImage.fromEcrRepository(props.repository),
             containerName: APP+'-container',
             logging: LogDrivers.awsLogs({
-                streamPrefix: 'ECS/minemapapp-pre-stg-server',
+                streamPrefix: 'ECS/'+APP,
             }),
             environmentFiles:[
                 EnvironmentFile.fromBucket(Bucket.fromBucketName(this, APP+'-bucket', RESOURCE_BUCKET),ENV_VARIABLE_FILE),
